@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start --transformer node_modules/react-native-typescript-transformer/index.js --sourceExts ts,tsx",
     "precommit": "lint-staged",
-    "test": "jest"
+    "test": "jest",
+    "lint": "tslint --project tsconfig.json"
   },
   "dependencies": {
     "react": "16.2.0",
@@ -33,6 +34,7 @@
     "react-test-renderer": "16.2.0",
     "ts-jest": "^22.0.3",
     "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.5.0",
     "typescript": "^2.7.1"
   },
   "jest": {

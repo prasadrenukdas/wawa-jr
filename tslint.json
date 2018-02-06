@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "no-console": [true, "log", "debug", "info", "time", "timeEnd", "trace"],
+    "quotemark": [true, "single", "avoid-escape", "jsx-double"],
+    "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type", "check-preblock"],
+    "curly": true,
+    "no-increment-decrement": false,
+    "no-angle-bracket-type-assertion": true,
+    "prefer-template": [true, "allow-single-concat"]
+  },
+  "extends": "tslint-config-airbnb"
+}
