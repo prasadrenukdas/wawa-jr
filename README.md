@@ -13,8 +13,26 @@ Requirements:
 You can also install the `react-native-cli`, but it's not necessary and you
 can use `npx react-native` relative to this project instead.
 
-Once you have your base project, run `yarn install` and you should be good to
-go!
+Once you have your base project, run `yarn install`.
+
+Update `app.json` as needed to reflect your app name and other meta inforamtion.
+Now remove the `ios` and `android` directories. Run `npx react-native eject` to
+recreate them with your settings.
+
+Note the changes to `ios/$PROJECT/AppDelegate.m`:
+
+```diff
++#ifdef DEBUG
+   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
++#else
++  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
++#endif
+```
+
+This will use the release bundle for iOS apps built with the `Release`
+configuration automatically.
+
+Also recreate the `android/app/src/main/assets` directory if needed.
 
 ## Development
 The easiest way to develop locally is to start the local development server and

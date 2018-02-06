@@ -14,7 +14,7 @@
     "react-native": "0.53.0"
   },
   "lint-staged": {
-    "**/*.ts": [
+    "**/*.{ts,tsx}": [
       "prettier --write --parser typescript --single-quote --trailing-comma all",
       "tslint --fix",
       "git add"
