@@ -1,16 +1,4 @@
 {
   "name": "rnts3",
-  "displayName": "rnts3",
-  "expo": {
-    "name": "rnts3",
-    "version": "1.0.0",
-    "slug": "rnts3",
-    "sdkVersion": "25.0.0",
-    "ios": {
-      "bundleIdentifier": "com.mobiquityinc.rnts3"
-    },
-    "android": {
-      "package": "com.mobiquityinc.rnts3"
-    }
-  }
+  "displayName": "rnts3"
 }

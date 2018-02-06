@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start --transformer node_modules/react-native-typescript-transformer/index.js --sourceExts ts,tsx",
+    "start": "react-native start --reset-cache",
+    "bundle:android": "react-native bundle --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res --reset-cache --platform android --dev false",
     "precommit": "lint-staged",
     "test": "jest",
     "lint": "tslint --project tsconfig.json"
@@ -53,7 +54,8 @@
       "node"
     ],
     "collectCoverageFrom": [
-      "**/*.tsx"
+      "**/*.tsx",
+      "**/*.ts"
     ],
     "moduleNameMapper": {
       "src(.*)": "<rootDir>/src/$1"
