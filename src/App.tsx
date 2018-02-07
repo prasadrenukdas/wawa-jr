@@ -12,8 +12,7 @@ import { API_URL } from 'src/Config';
 const instructions = Platform.select({
   ios: `Press Cmd+R to reload,
 Cmd+D or shake for dev menu`,
-  android:
-`Double tap R on your keyboard to reload,
+  android: `Double tap R on your keyboard to reload,
 Shake or press menu button for dev menu`,
 });
 
@@ -22,7 +21,7 @@ export default class App extends React.Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
+        <Text style={styles.welcome}>Welcome to React Native!~</Text>
         <Text style={styles.instructions}>{API_URL}</Text>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>

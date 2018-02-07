@@ -147,6 +147,10 @@ This will generate the build artifact xcarchive in `ios/output/$PROJECT.xcarchiv
 You can now create a .ipa using `xcodebuild` or Xcode with this build scheme.
 
 ### Android
+Android works a bit differently depending upon whether you're building for
+debug or release.
+
+#### Debug
 Android does not automatically create a JavaScript bundle so this step must
 be done manually.
 
@@ -170,4 +174,18 @@ install it to the emulator immediately.
 
 **Note:** When building for debug, Android will still try to connect to the
 development server for the bundle / reloading. I think it's safe to ignore this
-for testing purposes. This should not happen when you build for release.
+for testing purposes, or to use the server for debugging.
+
+#### Release
+First, set whatever environment variables you need for the build.
+
+In the `andrdoid/` directory, `./gradlew assembleRelease` will automatically
+build the JavaScript bundle and create the unsigned apk for you in
+`android/app/build/outputs/apk`.
+
+**Note:** The `bundleJsAndAssets` build step will only run if the source or
+assets have changed. If you only want to change configuration but create a new
+build, run `./gradlew clean` first.
+
+If the build does not work for some reason, try `rm -rf node_modules` and
+`yarn install` and retry.
