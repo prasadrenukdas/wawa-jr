@@ -6,7 +6,9 @@
     "curly": true,
     "no-increment-decrement": false,
     "no-angle-bracket-type-assertion": true,
-    "prefer-template": [true, "allow-single-concat"]
+    "prefer-template": [true, "allow-single-concat"],
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "ter-arrow-parens": [true, "as-needed"]
   },
   "extends": "tslint-config-airbnb"
 }
