@@ -1,16 +1,7 @@
 {
+  "extends": "./node_modules/ts-config-mobiquity-react-native/tsconfig.json",
   "compilerOptions": {
-    "target": "es2015",
-    "jsx": "react",
-    "noEmit": true,
-    "moduleResolution": "node",
-    "lib": ["dom", "es7"],
-    "baseUrl": ".",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "baseUrl": "."
   },
-  "exclude": [
-    "node_modules",
-    "src/**/__tests__/*"
-  ]
+  "exclude": ["src/**/__tests__/*"]
 }

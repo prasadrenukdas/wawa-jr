@@ -6,7 +6,6 @@ import App from '../App';
 import { create } from 'react-test-renderer';
 
 it('renders correctly', () => {
-  const tree = create(
-    <App />
-  );
+  const tree = create(<App />);
+  tree;
 });
