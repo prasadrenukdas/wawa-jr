@@ -1,8 +1,8 @@
 # React Native TypeScript Boilerplate
 This is a boilerplate project for working with React Native and TypeScript.
 
-You can copy or reference this repo in order to get started with A React Native
-project with a TypeScript source that includes environment variable
+You can copy or reference this repository in order to get started with a React Native
+project using a TypeScript source that includes environment variable
 configuration, linting, and testing with sensible defaults.
 
 ## Installation
@@ -15,7 +15,7 @@ can use `npx react-native` relative to this project instead.
 
 Once you have your base project, run `yarn install`.
 
-Update `app.json` as needed to reflect your app name and other meta inforamtion.
+Update `app.json` as needed to reflect your app name and other meta information.
 Now remove the `ios` and `android` directories. Run `npx react-native eject` to
 recreate them with your settings.
 
@@ -32,7 +32,7 @@ Note the changes to `ios/$PROJECT/AppDelegate.m`:
 This will use the release bundle for iOS apps built with the `Release`
 configuration automatically.
 
-Also recreate the `android/app/src/main/assets` directory if needed.
+Also, recreate the `android/app/src/main/assets` directory if needed.
 
 ## Development
 The easiest way to develop locally is to start the local development server and
@@ -75,7 +75,7 @@ ahead of time. This is not strictly necessary, but will help normalize the
 output files and your changes as you develop.
 
 ### Linting
-`yarn lint` will run the linter. Linting is also run at commit time and any
+`yarn lint` will run the linter. Linting is also run at commit time, and any
 automatic fixes are applied. If there are linter errors, the commit will fail.
 
 You should add a TypeScript and tslint plugin to your editor so you can catch
@@ -107,7 +107,7 @@ This maps any imports from `src/` to the root of the project.
 *Do not set secret configuration in version control or the environment*.
 
 Configuration of the app is handled through environment variables. When running
-the development server or bundling, the environment variables must be set.
+the development server, or bundling, the environment variables must be set.
 
 ```
 API_URL=test yarn start
@@ -151,7 +151,7 @@ Android works a bit differently depending upon whether you're building for
 debug or release.
 
 #### Debug
-Android does not automatically create a JavaScript bundle so this step must
+Android does not automatically create a JavaScript bundle, so this step must
 be done manually.
 
 First, set whatever environment variables you need to do the build.
