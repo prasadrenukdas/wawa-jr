@@ -25,25 +25,9 @@ boilerplate is recommended at this time.
 
 Once you have your base project, run `yarn install`.
 
-Update `app.json` as needed to reflect your app name and other meta information.
-
-You will also have to update `index.js` to register the correct app name.
-
-Now remove the `ios` and `android` directories. Run `react-native eject` to
-recreate them with your settings.
-
-Note the changes to `ios/$PROJECT/AppDelegate.m`:
-
-```diff
-+#ifdef DEBUG
-   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-+#else
-+  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-+#endif
-```
-
-This will use the release bundle for iOS apps built with the `Release`
-configuration automatically.
+Now run `npx react-native-rename $PROJECT` with your app name, bundle
+identifier, and other information that needs to be changed from the boilerplate.
+See: https://github.com/junedomingo/react-native-rename
 
 ## Development
 The easiest way to develop locally is to start the local development server and
