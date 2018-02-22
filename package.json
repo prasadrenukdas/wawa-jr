@@ -8,8 +8,14 @@
     "lint": "tslint --project tsconfig.test.json"
   },
   "dependencies": {
+    "es6-symbol": "^3.1.1",
     "react": "16.2.0",
-    "react-native": "0.53.0"
+    "react-native": "0.53.0",
+    "react-native-navigation": "^1.1.385",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-observable": "^0.18.0",
+    "rxjs": "^5.5.6"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
@@ -29,7 +35,6 @@
     "jest": "22.1.4",
     "lint-staged": "^6.1.0",
     "prettier": "^1.10.2",
-    "react-devtools": "^3.1.0",
     "react-native-typescript-transformer": "^1.2.3",
     "react-test-renderer": "16.2.0",
     "ts-config-mobiquity-react-native": "^0.0.10",

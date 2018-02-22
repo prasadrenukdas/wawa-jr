@@ -5,6 +5,36 @@ You can copy or reference this repository in order to get started with a React N
 project using a TypeScript source that includes environment variable
 configuration, linting, and testing with sensible defaults.
 
+## Base App
+The `master` branch includes a base for an app that can be built off of for
+most projects. Some initial modifications will be required:
+
+1. `App.ts` and `registerScreens.ts` will need to be modified to set up the
+ navigation scheme for the app.
+
+???
+
+### Example App
+**Check out the `example` git branch to see the example app.**
+
+This repository comprises an example app with the following functionality:
+
+* A homepage where you can search Github for a username
+* A user page that displays information for the searched user:
+ * Their icon, name, etc.
+ * A back button to return home to search
+
+This lays out the intended project structure including screens, view components,
+actions, reducers, data models, epics (for Redux Observable) / side effects,
+tests, etc.
+
+The example app also has the recommended default dependencies with examples of
+how to use them.
+
+You can build off of the example app, but you will probably remove the existing
+source home/user directories and modify the App component a bit. You can use
+the `master` branch as a better baseline.
+
 ## Installation
 Requirements:
 * `yarn` 1.3.2
@@ -20,14 +50,28 @@ you to do `react-native start` you can replace it with `yarn react-native
 start`. In some cases, `yarn` _is_ the base command.
 
 You can create a base project by cloning this or by using `react-native init`
-and copying over the relevant content / files that you need. Copying the
-boilerplate is recommended at this time.
+and copying over the relevant content / files that you need. Cloning and
+working from the boilerplate is recommended at this time.
 
 Once you have your base project, run `yarn install`.
 
-Now run `npx react-native-rename $PROJECT` with your app name, bundle
-identifier, and other information that needs to be changed from the boilerplate.
+Now run `npx react-native-rename $PROJECT_NAME -b $BUNDLE_ID`. You will be
+prompted for the app name, bundle identifier, and other information that needs
+to be changed from the boilerplate.
 See: https://github.com/junedomingo/react-native-rename
+
+## Dependencies
+This boilerplate project is built with recommended dependencies for Mobiquity
+React Native app development. *Using these dependencies is highly recommended
+and has the most support*. Don't use an alternative unless you have a good
+reason that's been approved by the team.
+
+* react-native-navigation -- navigation
+* redux + react-redux -- state management
+* redux-observable -- side effects
+
+**This list will probably also include `react-native-elements` which has not
+been fully analyzed yet**.
 
 ## Development
 The easiest way to develop locally is to start the local development server and
@@ -43,14 +87,70 @@ If you have a simulator open for a platform, React Native will use it
 automatically with the `run-<platform>` command. Otherwise you can specify a
 device or simulator with the options for `react-native run-<platform>`.
 
-You can reload the app with <kbd>Cmd-r</kbd> on iOS or <kbd>r r</kbd> on
-Android. You can also open the menu with <kbd>Cmd-d</kbd> on iOS or
-<kbd>Cmd-m</kbd> in Android. This will give you options to enable live reloading
-and hot reloading.
+You can open an iOS simulator using Xcode and an Android simulator using Android
+Studio or the `emulator` Android tools command.
 
-Remember that the React Native server must be running for `run-<platform>` to
-work. This is done with `react-native start`. You may want to use
-`react-native start --reset-cache` in some cases.
+Once the app is running in the simulator, you can reload it with
+<kbd>Cmd-r</kbd> on iOS or <kbd>r r</kbd> on Android. You can also open the menu
+with <kbd>Cmd-d</kbd> on iOS or <kbd>Cmd-m</kbd> in Android. This will give you
+options to enable live reloading, hot reloading, and remote JS debugging.
+
+Remember that the React Native server (`react-native start`) must be running for
+`run-<platform>` to work. You may want to use `react-native start --reset-cache`
+in some cases, especially if your app is crashes or new changes aren't being
+reflected.
+
+You can use the bundle server more than one simulator/emulator/device at a time
+which will allow you to develop the app on multiple platforms at once.
+
+### Debugging
+Install the third party React Native Debugger: https://github.com/jhen0409/react-native-debugger
+
+```sh
+brew update && brew cask install react-native-debugger
+```
+
+This is a standalone app. In order to use it, open it via:
+
+```sh
+open "rndebugger://set-debugger-loc?host=localhost&port=8081"
+```
+
+Once the app is running in your simulator/emulator, type <kbd>Cmd-d</kbd> and
+select "Debug JS Remotely" if it is not already selected. Now you should see
+logging in the debugger.
+
+You can also set the debugger at React Native server start time using the
+`REACT_DEBUGGER` environment variable. For example:
+
+```sh
+REACT_DEBUGGER="open -g 'rndebugger://set-debugger-loc?port=8081' || ''" react-native start
+```
+
+This should open the debugger automatically in the background when you turn on
+"Debug JS Remotely." You can remove the `-g` flag if you want it to pop to the
+foreground when it opens.
+
+The project setup should allow Redux devtools to work out of the box.
+
+**Note:** You can only use the debugger with one emulator/simulator/device at
+a time.
+
+### Hot Reloading
+Hot reloading reloads the current view / screen with changes you've made to that
+file or any dependent files in real time. This is different than live reloading
+which will restart the app automatically when you make changes. Using hot
+reloading is highly recommended at least in cases where you are developing
+screens.
+
+Hot reloading should be supported with our base modules. Some hot reloading will
+cause errors or not work properly. In this case, you can manually reload the
+app with <kbd>Cmd-r</kbd> on iOS or <kbd>r r</kbd> on Android. If hot reloading
+is causing too many issues while you're developing something, you can also turn
+it off and turn live reloading on (or just handle reloading on your own).
+
+If you are running multiple simulators or devices, hot/live reloading changes
+will propagate to all of them at once.
 
 ### Unit Testing
 Write unit tests relative to the files they are testing in corresponding
@@ -99,7 +199,7 @@ This is handled via `package.json@jest.moduleNameMapper: "src(.*)": "<rootDir>/s
 This maps any imports from `src/` to the root of the project.
 
 ## Environment Variables
-*Do not set secret configuration in version control or the environment*.
+**Do not set secret configuration in version control or the environment**.
 
 Configuration of the app is handled through environment variables. When running
 the development server, or bundling, the environment variables must be set.
@@ -117,7 +217,7 @@ In order to add a new environment variable, update `src/Config.ts`:
 Now you can `import { NAME } from 'src/Config.ts` wherever it's needed.
 
 Remember to set the environment variables you need  before running `react-native
-start`, `xcodebuild`, or `android/gradlew assembe$DEBUG_OR_RELEASE`.
+start`, `xcodebuild`, or `android/gradlew assemble$DEBUG_OR_RELEASE`.
 
 ## Building
 Developing using the local server is highly recommended. If you need to test on
