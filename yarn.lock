@@ -4944,9 +4944,9 @@ ts-config-mobiquity-core@^0.0.11:
   dependencies:
     tslint-config-airbnb "^5.6.0"
 
-ts-config-mobiquity-react-native@0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/ts-config-mobiquity-react-native/-/ts-config-mobiquity-react-native-0.0.12.tgz#258420771822e1ec7a37e7d976da748adb9e5508"
+ts-config-mobiquity-react-native@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/ts-config-mobiquity-react-native/-/ts-config-mobiquity-react-native-0.0.14.tgz#9fc3bd4db54eb72d1cd7ec11d5236c6f56e2cb74"
   dependencies:
     ts-config-mobiquity-core "^0.0.11"
     tslint-react "^3.4.0"

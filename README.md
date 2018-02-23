@@ -1,18 +1,24 @@
 # React Native TypeScript Boilerplate
 This is a boilerplate project for working with React Native and TypeScript.
 
-You can copy or reference this repository in order to get started with a React Native
-project using a TypeScript source that includes environment variable
+You can copy or reference this repository in order to get started with a React
+Native project using a TypeScript source that includes environment variable
 configuration, linting, and testing with sensible defaults.
 
 ## Base App
 The `master` branch includes a base for an app that can be built off of for
-most projects. Some initial modifications will be required:
+most projects. It includes base project dependencies and a file structure. It
+already supports using react-native-navigation with hot reloading.
 
-1. `App.ts` and `registerScreens.ts` will need to be modified to set up the
- navigation scheme for the app.
+Some modifications will be required:
 
-???
+1. `App.ts` will need to be modified to set up the navigation scheme for the app.
+2. `Home.tsx` should be edited or removed. `HomeScreen.js` may also be impacted
+ depending upon whether you have a screen in your app called "Home."
+    * `__tests__/Home.test.tsx` should be similarly updated.
+3. `Store.ts` should be updated to import all reducers and epics to build the
+ state management store for the app. Any modifications to special handling for
+ dev tools should be made here as well.
 
 ### Example App
 **Check out the `example` git branch to see the example app.**
@@ -31,9 +37,10 @@ tests, etc.
 The example app also has the recommended default dependencies with examples of
 how to use them.
 
-You can build off of the example app, but you will probably remove the existing
-source home/user directories and modify the App component a bit. You can use
-the `master` branch as a better baseline.
+You can build off of the example app, but it's recommended to build off of the
+`master` branch app instead since it requires fewer modifications. Most of the
+example app functionality won't apply to what you are building, but it should
+be a good reference.
 
 ## Installation
 Requirements:
@@ -151,6 +158,9 @@ it off and turn live reloading on (or just handle reloading on your own).
 
 If you are running multiple simulators or devices, hot/live reloading changes
 will propagate to all of them at once.
+
+If working from the base or example app, try enabling hot reloading and then
+making a change to a component on your screen to see it in action.
 
 ### Unit Testing
 Write unit tests relative to the files they are testing in corresponding
