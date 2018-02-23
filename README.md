@@ -208,7 +208,7 @@ You can create more path aliases in a similar fashion by adding a
 This is handled via `package.json@jest.moduleNameMapper: "src(.*)": "<rootDir>/src/$1"`.
 This maps any imports from `src/` to the root of the project.
 
-## Environment Variables
+## Environment Variables / Configuration
 **Do not set secret configuration in version control or the environment**.
 
 Configuration of the app is handled through environment variables. When running
@@ -224,7 +224,7 @@ In order to add a new environment variable, update `src/Config.ts`:
 + export const NAME = get(process.env['NAME'], 'default value');
 ```
 
-Now you can `import { NAME } from 'src/Config.ts` wherever it's needed.
+Now you can `import { NAME } from 'src/Config` wherever it's needed.
 
 Remember to set the environment variables you need  before running `react-native
 start`, `xcodebuild`, or `android/gradlew assemble$DEBUG_OR_RELEASE`.
