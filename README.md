@@ -23,12 +23,7 @@ Some modifications will be required:
 ### Example App
 **Check out the `example` git branch to see the example app.**
 
-This repository comprises an example app with the following functionality:
-
-* A homepage where you can search Github for a username
-* A user page that displays information for the searched user:
- * Their icon, name, etc.
- * A back button to return home to search
+This repository comprises an example app with distinct functionality.
 
 This lays out the intended project structure including screens, view components,
 actions, reducers, data models, epics (for Redux Observable) / side effects,
