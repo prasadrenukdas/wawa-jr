@@ -16,11 +16,11 @@ declare const window: any;
 declare const module: any;
 
 // Store rerquires at least one reducer function. Remove/replace.
-export interface RootState {
+export interface AppState {
   example: {};
 }
 
-export const rootReducer = combineReducers<RootState>({
+export const rootReducer = combineReducers<AppState>({
   example: (state = {}) => state,
 });
 
@@ -47,13 +47,22 @@ if (__DEV__) {
     : compose;
 }
 
-export const store = createStore(
+const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(...middleware)),
 );
 
-// Allow for hot reloading with redux. See:
-// https://github.com/reactjs/react-redux/releases/tag/v2.0.0
-if (module.hot) {
-  store.replaceReducer(rootReducer);
-}
+export const configureStore = () => {
+  // Allow for hot reloading with redux. See:
+  // https://github.com/reactjs/react-redux/releases/tag/v2.0.0
+  if (module.hot) {
+    module.hot.accept(() => {
+      // ordinarily you would import the reducers you need here and recreate
+      // the rootReducer to apply changes.
+      // same with epics. See the example branch
+      store.replaceReducer(rootReducer);
+    });
+  }
+
+  return store;
+};
