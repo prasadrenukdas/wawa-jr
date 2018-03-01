@@ -138,6 +138,10 @@ The project setup should allow Redux devtools to work out of the box.
 **Note:** You can only use the debugger with one emulator/simulator/device at
 a time.
 
+To debug network requests, you can right-click the debugger and select "Enable
+Network Inspect." There are some limitations. See:
+https://github.com/jhen0409/react-native-debugger/blob/master/docs/network-inspect-of-chrome-devtools.md
+
 ### Hot Reloading
 Hot reloading reloads the current view / screen with changes you've made to that
 file or any dependent files in real time. This is different than live reloading
