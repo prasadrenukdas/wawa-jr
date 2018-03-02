@@ -8,7 +8,6 @@
     "lint": "tslint --project tsconfig.test.json"
   },
   "dependencies": {
-    "es6-symbol": "^3.1.1",
     "react": "16.2.0",
     "react-native": "0.53.0",
     "react-native-navigation": "^1.1.385",

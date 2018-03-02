@@ -10,10 +10,8 @@ import React from 'react';
 
 import { Home } from 'src/Home';
 
-class HomeScreen extends React.Component {
+export default class HomeScreen extends React.Component {
   render() {
     return <Home {...this.props} />;
   }
 }
-
-export default HomeScreen;
