@@ -37,7 +37,6 @@
     "react-native-typescript-transformer": "^1.2.3",
     "react-test-renderer": "16.2.0",
     "redux-immutable-state-invariant": "^2.1.0",
-    "redux-logger": "^3.0.6",
     "ts-config-mobiquity-react-native": "^0.0.15",
     "ts-jest": "^22.0.3",
     "tslint": "^5.9.1",
