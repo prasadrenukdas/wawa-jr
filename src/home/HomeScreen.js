@@ -8,10 +8,10 @@
  */
 import React from 'react';
 
-import { Home } from 'src/Home';
+import { HomePage } from 'src/home/HomePage';
 
 export default class HomeScreen extends React.Component {
   render() {
-    return <Home {...this.props} />;
+    return <HomePage {...this.props} />;
   }
 }

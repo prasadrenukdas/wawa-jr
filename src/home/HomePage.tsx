@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, ViewStyle, View, Text, TextStyle } from 'react-native';
 
 // Export component without provider for testing purposes
-export class HomeComponent extends React.Component {
+export class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -20,9 +20,9 @@ export class HomeComponent extends React.Component {
 }
 
 // Connected component is used with Redux store
-export const Home = connect()(HomeComponent);
+export const HomePage = connect()(Home);
 
-// This helps autocompletion / type safety with `StyleSheet.create`
+// This helps auto-completion / type safety with `StyleSheet.create`
 interface Style {
   container: ViewStyle;
   textContent: TextStyle;

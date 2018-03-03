@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 import { configureStore } from 'src/Store';
 
-import HomeScreen from 'src/HomeScreen';
+import HomeScreen from 'src/home/HomeScreen';
 
 const store = configureStore();
 

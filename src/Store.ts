@@ -15,7 +15,7 @@ import { logger } from 'redux-logger';
 declare const window: any;
 declare const module: any;
 
-// Store rerquires at least one reducer function. Remove/replace.
+// Store requires at least one reducer function. Remove/replace.
 export interface AppState {
   example: {};
 }
