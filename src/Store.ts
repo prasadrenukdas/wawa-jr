@@ -10,7 +10,6 @@ import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
 // For development
 import { default as reduxImmutableStateInvariant } from 'redux-immutable-state-invariant';
-import { logger } from 'redux-logger';
 
 declare const window: any;
 declare const module: any;
@@ -38,7 +37,7 @@ if (__DEV__) {
   (reduxModule as any).__DO_NOT_USE__ActionTypes.REPLACE = '@@redux/REPLACE';
 
   // Force immutable state for redux during dev and add additional logging
-  middleware = [...middleware, reduxImmutableStateInvariant(), logger];
+  middleware = [...middleware, reduxImmutableStateInvariant()];
 
   // tslint:disable-next-line:max-line-length
   // See: https://github.com/jhen0409/react-native-debugger/blob/master/docs/redux-devtools-integration.md
