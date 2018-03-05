@@ -11,7 +11,6 @@ src/
     Store.ts
     __tests__/
         Store.test.ts
-    package.json
     common/
         Button.tsx
         button.style.ts
