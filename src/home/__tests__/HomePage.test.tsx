@@ -10,38 +10,9 @@ import { Home } from 'src/home/HomePage';
 // the rendered element into a JSON object as shown below. Using that
 // object is a simple way to test a rendered component.
 
-// Note: this specific test is contrived to illustrate the types of properties
-// you will likely encounter in the JSON. In reality, if you wanted to test
-// that every property was correct, you would use snapshots.
 it('renders correctly', () => {
-  const tree = create(<Home />);
-  const expectedJSON = {
-    type: 'View',
-    props: {
-      style: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        paddingBottom: 100,
-      },
-    },
-    children: [
-      {
-        type: 'Text',
-        props: {
-          style: {
-            fontSize: 25,
-            textAlign: 'center',
-          },
-          accessible: true,
-          allowFontScaling: true,
-          ellipsizeMode: 'tail',
-        },
-        children: ['Edit or remove this file.'],
-      },
-    ],
-  };
-  expect(tree.toJSON()).toEqual(expectedJSON);
+  const tree = create(<Home />).toJSON();
+  expect(tree).toMatchSnapshot();
 });
 
 // Since `Home` is just a class, it can be tested like any other
