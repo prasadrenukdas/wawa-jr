@@ -11,7 +11,7 @@ it were written from scatch._**
 **Make sure that you remove the `.git` directory for app if you clone it and
 start fresh with `git init`**.
 
-See [the example apps documentation](doc/example-apps.md) for more information.
+See [the example apps documentation](example-apps.md) for more information.
 
 ## Installation
 Requirements:

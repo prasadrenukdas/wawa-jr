@@ -1,6 +1,6 @@
 # Development Standards
 You should follow standards for testing and code formatting while you develop.
-Also keep [directory structure and filenames](doc/fs-structure.md) in mind.
+Also keep [directory structure and filenames](fs-structure.md) in mind.
 
 ## Unit Testing
 Testing is done using the [jest framework](https://facebook.github.io/jest/docs/en/using-matchers.html).
