@@ -64,6 +64,11 @@ components that are specific to the account pages, (`PasswordInput.tsx`) as
 well as reusable utility functions (`account-storage.ts`). Components and
 functions from `common` may also be used.
 
+A suggested rule of thumb is to keep the number of adjacent files to less than
+ten before breaking out into sub-directories. Psychologically, humans start
+to get overwhelmed when there are more than eight to ten items for them to
+digest at once.
+
 Asset files should be placed nearest to the module that uses them. It may make
 some sense for assets to be placed in `common`.
 

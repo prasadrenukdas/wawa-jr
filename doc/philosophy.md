@@ -29,3 +29,29 @@ Exceptions: Sometimes it is useful to have scripts when we want to force particu
 behavior. Examples are `yarn test` and `yarn lint` where we want to enforce
 proper type checking and linting of all required files in addition to some base
 behavior. These scripts are also more complex.
+
+> *Why not use a [sock drawer](http://cliffmeyers.com/blog/2013/4/21/code-organization-angularjs-javascript)
+ directory structure?*
+
+Often project files are organized into file type with directories such as
+`components`, `services`, `pages`, etc. This style makes it easy to figure out
+where a file should go when you are writing it, but it provides very little
+useful information when reading / searching / altering / refactoring. Not only
+that, but with this structure app functionality is not stored together so you
+may have `src/components/account/login/form/Password.tsx` and
+`src/services/account/login/form/password-check.ts` that have an interdependency
+in terms of functionality are in completely different places in the file system.
+
+Since code should be optimized for reading rather than writing, we discard the
+benefit of knowing where a file should be placed in the structure immediately.
+Instead, we embrace organizing files by functionality and keeping files with
+like functionality together. We might have
+`src/account/login/{Password.tsx,password-check.ts}`. Figuring out what to name
+files and where to place them is more difficult and may require periodic
+rethinking and refactoring. This up front additional effort provides more
+benefit to maintaining the project than reducing up front effort using sock
+drawer organization.
+
+`common` is something of an exception and applies to functionality that is so
+broad it applies to essentially all areas of the app. Updates to `common` should
+be done with more care because of their possible impact.
