@@ -15,8 +15,8 @@ See [the example apps documentation](doc/example-apps.md) for more information.
 
 ## Installation
 Requirements:
-* `yarn` 1.3.2
-* `node` 9
+* `yarn` v1
+* `node` v9
 
 ---
 
