@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import { Carousel, Pagination } from 'react-native-snap-carousel';
-import { sliderWidth, itemWidth } from './styles/SliderEntry.style';
+import { sliderWidth, itemWidth } from './styles/SliderEntry';
 import { SliderEntry } from './components/SliderEntry';
 import { styles, colors } from './styles/index';
 import { ENTRIES1, ENTRIES2 } from './static/entries';
