@@ -14,12 +14,12 @@ import { styles, colors } from './styles/index';
 import { ENTRIES1, ENTRIES2 } from './static/entries';
 import { scrollInterpolators, animatedStyles } from './utils/animations';
 import { connect } from 'react-redux';
-import { LinearGradient } from 'react-native-linear-gradient';
-// import { Carousel } from 'react-native-snap-carousel';
-const Carousel = require('react-native-carousel');
+import reactNativeSnapCarousel, {
+  Pagination,
+} from 'react-native-snap-carousel';
+// import { Pagination } from 'react-native-snap-carousel';
 
-// tslint:disable-next-line:import-name
-// import LinearGradient from 'react-native-linear-gradient';
+const Carousel = reactNativeSnapCarousel;
 
 const IS_ANDROID = Platform.OS === 'android';
 const SLIDER_1_FIRST_ITEM = 1;
@@ -28,29 +28,45 @@ interface Props {}
 
 interface State {
   slider1ActiveSlide: any;
+  entries: any;
 }
 export class Example extends React.Component<Props, State> {
+  // tslint:disable-next-line:variable-name
+  _slider1Ref: any;
   slider1Ref: any;
   constructor(props) {
     super(props);
+    this.mainExample = this.mainExample.bind(this);
     this.state = {
       slider1ActiveSlide: SLIDER_1_FIRST_ITEM,
+      entries: ENTRIES2,
     };
+  }
+
+  componentDidMount() {
+    this.setState({
+      entries: ENTRIES1,
+    });
   }
 
   /*  renderItem({ item, index }) {
      return <SliderEntry data={item} even={(index + 1) % 2 === 0} />;
    } */
 
-  renderItem({ item, index }) {
+  // tslint:disable-next-line:function-name
+  _renderItem({ item, index, parallaxProps }) {
     return (
-      <View style={styles.exampleContainer}>
-        <Text style={styles.title}>{item.title}</Text>
-      </View>
+      <SliderEntry
+        parallaxProps
+        data={item}
+        parallax={false}
+        even={(index + 1) % 2 === 0}
+      />
     );
   }
 
-  renderItemWithParallax({ item, index }, parallaxProps) {
+  // tslint:disable-next-line:function-name
+  _renderItemWithParallax({ item, index }, parallaxProps) {
     return (
       <SliderEntry
         data={item}
@@ -69,50 +85,107 @@ export class Example extends React.Component<Props, State> {
     return <SliderEntry data={item} even parallax parallaxProps />;
   }
 
-  get gradient() {
+  layoutExample(number, title, type) {
+    const isTinder = type === 'tinder';
     return (
-      <LinearGradient
-        colors={[colors.background1, colors.background2]}
-        style={styles.gradient}
-      />
+      // tslint:disable-next-line:max-line-length
+      <View
+        style={[
+          styles.exampleContainer,
+          isTinder ? styles.exampleContainerDark : styles.exampleContainerLight,
+        ]}
+      >
+        <Text
+          style={[styles.title, isTinder ? {} : styles.titleDark]}
+        >{`Example ${number}`}</Text>
+        <Text style={[styles.subtitle, isTinder ? {} : styles.titleDark]}>
+          {title}
+        </Text>
+        <Carousel
+          data={isTinder ? ENTRIES2 : ENTRIES1}
+          renderItem={isTinder ? this._renderItem : this._renderItem}
+          sliderWidth={sliderWidth}
+          itemWidth={itemWidth}
+          containerCustomStyle={styles.slider}
+          contentContainerCustomStyle={styles.sliderContentContainer}
+          layout={type}
+          loop
+        />
+      </View>
     );
   }
 
   mainExample(number, title) {
     const { slider1ActiveSlide } = this.state;
+
     return (
-      <Carousel
-        ref={c => (this.slider1Ref = c)}
-        data={[
-          {
-            title: 'Beautiful and dramatic Antelope Canyon',
-            subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-            illustration: 'https://i.imgur.com/UYiroysl.jpg',
-          },
-        ]}
-        renderItem={this.renderLightItem}
-        sliderWidth={sliderWidth}
-        itemWidth={itemWidth}
-      />
+      <View style={styles.container}>
+        <Carousel
+          ref={c => (this._slider1Ref = c)}
+          data={ENTRIES1}
+          renderItem={this._renderItem}
+          sliderWidth={sliderWidth}
+          itemWidth={itemWidth}
+          firstItem={SLIDER_1_FIRST_ITEM}
+          inactiveSlideScale={0.94}
+          inactiveSlideOpacity={0.7}
+          inactiveSlideShift={20}
+          containerCustomStyle={styles.slider}
+          contentContainerCustomStyle={styles.sliderContentContainer}
+          loopClonesPerSide={2}
+          autoplayDelay={500}
+          autoplayInterval={3000}
+        />
+        <Pagination
+          dotsLength={ENTRIES1.length}
+          activeDotIndex={slider1ActiveSlide}
+          containerStyle={styles.paginationContainer}
+          dotColor={'rgba(255, 255, 255, 0.92)'}
+          dotStyle={styles.paginationDot}
+          inactiveDotColor={colors.black}
+          inactiveDotOpacity={0.4}
+          inactiveDotScale={0.6}
+          carouselRef={this._slider1Ref}
+          tappableDots={!!this._slider1Ref}
+        />
+      </View>
     );
   }
 
+  /*  renderItem({ item, index }) {
+    return (
+      <View>
+        <Text style={styles.title}>{item.title}</Text>
+      </View>
+    );
+  } */
+
   render() {
     // tslint:disable-next-line:max-line-length
-    const example1 = this.mainExample;
-
+    const example1 = this.mainExample(
+      1,
+      // tslint:disable-next-line:max-line-length
+      'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots',
+    );
+    const example4 = this.layoutExample(
+      4,
+      '"Tinder-like" layout | Loop',
+      'tinder',
+    );
     return (
-      <Carousel animate={false} width={375}>
+      <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
-          <Text>Page 1</Text>
+          <StatusBar
+            backgroundColor={'rgba(0, 0, 0, 0.3)'}
+            barStyle={'light-content'}
+          />
+
+          <ScrollView style={styles.scrollview} scrollEventThrottle={200}>
+            {example1}
+            {example4}
+          </ScrollView>
         </View>
-        <View style={styles.container}>
-          <Text>Page 2</Text>
-        </View>
-        <View style={styles.container}>
-          <Text>Page 3</Text>
-        </View>
-      </Carousel>
+      </SafeAreaView>
     );
   }
 }

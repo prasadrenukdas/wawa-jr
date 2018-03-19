@@ -36,7 +36,7 @@ export class Home extends React.Component<Props, State> {
   }
   onPressButton() {
     this.props.navigator.push({
-      screen: 'MakeMyMeal',
+      screen: 'Example',
       title: 'Pushed Screen',
     });
   }

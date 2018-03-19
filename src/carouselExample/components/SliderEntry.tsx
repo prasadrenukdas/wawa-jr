@@ -1,4 +1,4 @@
-import * as react from 'react';
+import * as React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { PropTypes } from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
@@ -11,7 +11,10 @@ interface Props {
   even: any;
 }
 interface State {}
-export class SliderEntry extends react.Component<Props, State> {
+export class SliderEntry extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+  }
   static propTypes = {
     data: PropTypes.object.isRequired,
     even: PropTypes.bool,
