@@ -15,8 +15,14 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
+interface Props {
+  navigator: any;
+}
+
+interface State {}
+
 // Export component without provider for testing purposes
-export class Home extends React.Component {
+export class Home extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.onPressButton = this.onPressButton.bind(this);

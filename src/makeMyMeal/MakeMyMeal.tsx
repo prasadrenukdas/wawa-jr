@@ -38,7 +38,6 @@ export class MakeMyMeal extends React.Component {
         <View style={styles.drinksContainer}>
           <Text style={styles.recentHeader}>Drinks</Text>
         </View>
-        <Button title="press me" />
       </View>
     );
   }
