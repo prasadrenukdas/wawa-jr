@@ -15,6 +15,8 @@ import { styles, colors } from './styles/index';
 import { ENTRIES1, ENTRIES2 } from './static/entries';
 import { scrollInterpolators, animatedStyles } from './utils/animations';
 import { connect } from 'react-redux';
+// tslint:disable-next-line:import-name
+import LinearGradient from 'react-native-linear-gradient';
 
 const IS_ANDROID = Platform.OS === 'android';
 const SLIDER_1_FIRST_ITEM = 1;
@@ -197,6 +199,17 @@ export class Example extends React.Component<Props, State> {
     );
   }
 
+  get gradient() {
+    return (
+      <LinearGradient
+        start={{ x: 1, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        locations={[0, 0.5, 0.6]}
+        colors={['#4c669f', '#3b5998', '#192f6a']}
+      />
+    );
+  }
+
   render() {
     // tslint:disable-next-line:max-line-length
     const example1 = this.mainExample(
@@ -251,7 +264,7 @@ export class Example extends React.Component<Props, State> {
             backgroundColor={'rgba(0, 0, 0, 0.3)'}
             barStyle={'light-content'}
           />
-
+          {this.gradient}
           <ScrollView
             style={styles.scrollview}
             scrollEventThrottle={200}
