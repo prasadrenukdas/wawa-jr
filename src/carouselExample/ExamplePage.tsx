@@ -16,7 +16,7 @@ import { ENTRIES1, ENTRIES2 } from './static/entries';
 import { scrollInterpolators, animatedStyles } from './utils/animations';
 import { connect } from 'react-redux';
 // tslint:disable-next-line:import-name
-import LinearGradient from 'react-native-linear-gradient';
+// import LinearGradient from 'react-native-linear-gradient';
 
 const IS_ANDROID = Platform.OS === 'android';
 const SLIDER_1_FIRST_ITEM = 1;
@@ -33,6 +33,8 @@ export class Example extends React.Component<Props, State> {
     this.state = {
       slider1ActiveSlide: SLIDER_1_FIRST_ITEM,
     };
+    this.mainExample = this.mainExample.bind(this);
+    // this.layoutExample = this.layoutExample.bind(this);
   }
 
   renderItem({ item, index }) {
@@ -82,7 +84,7 @@ export class Example extends React.Component<Props, State> {
           firstItem={SLIDER_1_FIRST_ITEM}
           inactiveSlideScale={0.94}
           inactiveSlideOpacity={0.7}
-          // inactiveSlideShift={20}
+          inactiveSlideShift={20}
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
           loop
@@ -109,7 +111,7 @@ export class Example extends React.Component<Props, State> {
     );
   }
 
-  momentumExample(number, title) {
+  /*  momentumExample(number, title) {
     return (
       <View style={styles.exampleContainer}>
         <Text style={styles.title}>{`Example ${number}`}</Text>
@@ -133,9 +135,9 @@ export class Example extends React.Component<Props, State> {
         />
       </View>
     );
-  }
+  } */
 
-  layoutExample(number, title, type) {
+  /* layoutExample(number, title, type) {
     const isTinder = type === 'tinder';
     return (
       <View
@@ -162,9 +164,9 @@ export class Example extends React.Component<Props, State> {
         />
       </View>
     );
-  }
+  } */
 
-  customExample(number, title, refNumber, renderItemFunc) {
+  /*  customExample(number, title, refNumber, renderItemFunc) {
     const isEven = refNumber % 2 === 0;
 
     // Do not render examples on Android; because of the zIndex bug, they won't work as is
@@ -195,18 +197,14 @@ export class Example extends React.Component<Props, State> {
         />
       </View>
     ) : (
-      false
-    );
-  }
+        false
+      );
+  } */
 
   get gradient() {
     return (
-      <LinearGradient
-        start={{ x: 1, y: 0 }}
-        end={{ x: 0, y: 1 }}
-        locations={[0, 0.5, 0.6]}
-        colors={['#4c669f', '#3b5998', '#192f6a']}
-      />
+      // tslint:disable-next-line:jsx-self-close
+      <Text>hello</Text>
     );
   }
 
@@ -217,7 +215,7 @@ export class Example extends React.Component<Props, State> {
       // tslint:disable-next-line:max-line-length
       'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots',
     );
-    const example2 = this.momentumExample(
+    /* const example2 = this.momentumExample(
       2,
       'Momentum | Left-aligned | Active animation',
     );
@@ -254,33 +252,28 @@ export class Example extends React.Component<Props, State> {
       'Custom animation 4',
       4,
       this.renderLightItem,
-    );
+    ); */
 
     return (
-      <SafeAreaView style={styles.safeArea}>
+      <View>{example1}</View>
+      /*  <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <StatusBar
             translucent
             backgroundColor={'rgba(0, 0, 0, 0.3)'}
             barStyle={'light-content'}
           />
-          {this.gradient}
+
           <ScrollView
             style={styles.scrollview}
             scrollEventThrottle={200}
             directionalLockEnabled
           >
             {example1}
-            {example2}
-            {example3}
-            {example4}
-            {example5}
-            {example6}
-            {example7}
-            {example8}
+            
           </ScrollView>
         </View>
-      </SafeAreaView>
+      </SafeAreaView> */
     );
   }
 }
