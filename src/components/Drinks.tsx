@@ -47,18 +47,12 @@ export class Drinks extends React.Component<Props, State> {
   }
 }
 
-// Connected component is used with Redux store
-// export const DrinksPage = connect()(Drinks);
-
-// This helps auto-completion / type safety with `StyleSheet.create`
 interface Style {
   container: ViewStyle;
   textContent: TextStyle;
   image;
 }
 
-// React hoists variables. We declare the styles here to keep them out of the
-// way of the component definition
 const styles = StyleSheet.create<Style>({
   image: {
     width,

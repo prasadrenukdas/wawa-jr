@@ -1,8 +1,3 @@
-/**
- * This represents a simple screen-level container component with rendering
- * and styling that is hooked up to the redux store.
- */
-
 import * as React from 'react';
 // import { connect } from 'react-redux';
 
@@ -24,7 +19,7 @@ interface Props {
 }
 
 interface State {}
-// Export component without provider for testing purposes
+
 export class Sides extends React.Component<Props, State> {
   onPressButton() {
     // console.log('hello');
@@ -47,18 +42,12 @@ export class Sides extends React.Component<Props, State> {
   }
 }
 
-// Connected component is used with Redux store
-// export const SidesPage = connect()(Sides);
-
-// This helps auto-completion / type safety with `StyleSheet.create`
 interface Style {
   container: ViewStyle;
   textContent: TextStyle;
   image;
 }
 
-// React hoists variables. We declare the styles here to keep them out of the
-// way of the component definition
 const styles = StyleSheet.create<Style>({
   image: {
     width,

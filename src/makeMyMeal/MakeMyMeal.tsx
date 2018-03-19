@@ -1,8 +1,3 @@
-/**
- * This represents a simple screen-level container component with rendering
- * and styling that is hooked up to the redux store.
- */
-
 import * as React from 'react';
 import { connect } from 'react-redux';
 
@@ -22,7 +17,6 @@ import { Drinks } from 'src/components/Drinks';
 const { width } = Dimensions.get('window');
 const height = width * 0.8;
 
-// Export component without provider for testing purposes
 export class MakeMyMeal extends React.Component {
   onPressButton() {}
   getMainCourse() {
