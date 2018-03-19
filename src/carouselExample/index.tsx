@@ -1,4 +1,4 @@
-import * as react from 'react';
+import * as React from 'react';
 import {
   Platform,
   View,
@@ -11,7 +11,7 @@ import {
 import { Carousel, Pagination } from 'react-native-snap-carousel';
 import { sliderWidth, itemWidth } from './styles/SliderEntry.style';
 import { SliderEntry } from './components/SliderEntry';
-import { styles, colors } from './styles/index.style';
+import { styles, colors } from './styles/index';
 import { ENTRIES1, ENTRIES2 } from './static/entries';
 import { scrollInterpolators, animatedStyles } from './utils/animations';
 import { connect } from 'react-redux';
@@ -24,7 +24,7 @@ interface Props {}
 interface State {
   slider1ActiveSlide: any;
 }
-export class Example extends react.Component<Props, State> {
+export class Example extends React.Component<Props, State> {
   slider1Ref: any;
   constructor(props) {
     super(props);
