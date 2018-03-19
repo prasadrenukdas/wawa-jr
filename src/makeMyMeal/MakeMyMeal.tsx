@@ -13,49 +13,47 @@ import {
   Text,
   TextStyle,
   TouchableHighlight,
+  Button,
+  Alert,
 } from 'react-native';
 
 // Export component without provider for testing purposes
-export class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onPressButton = this.onPressButton.bind(this);
-  }
-  onPressButton() {
-    this.props.navigator.push({
-      screen: 'MakeMyMeal',
-      title: 'Pushed Screen',
-    });
-  }
+export class MakeMyMeal extends React.Component {
+  onPressButton() {}
   render() {
     return (
       <View style={styles.container}>
         <TouchableHighlight
-          style={styles.makeMyMealContainer}
+          style={styles.mainsContainer}
           onPress={this.onPressButton}
           underlayColor="white"
         >
           <View>
-            <Text style={styles.makeMyMealHeader}>Make My Meal</Text>
+            <Text style={styles.makeMyMealHeader}>Mains</Text>
           </View>
         </TouchableHighlight>
-        <View style={styles.recentContainer}>
-          <Text style={styles.recentHeader}>Recent</Text>
+        <View style={styles.sidesContainer}>
+          <Text style={styles.recentHeader}>Sides</Text>
         </View>
+        <View style={styles.drinksContainer}>
+          <Text style={styles.recentHeader}>Drinks</Text>
+        </View>
+        <Button title="press me" />
       </View>
     );
   }
 }
 
 // Connected component is used with Redux store
-export const HomePage = connect()(Home);
+export const HomePage = connect()(MakeMyMeal);
 
 // This helps auto-completion / type safety with `StyleSheet.create`
 interface Style {
   container: ViewStyle;
   textContent: TextStyle;
-  makeMyMealContainer: ViewStyle;
-  recentContainer: ViewStyle;
+  mainsContainer: ViewStyle;
+  sidesContainer: ViewStyle;
+  drinksContainer: ViewStyle;
   makeMyMealHeader: TextStyle;
   recentHeader: TextStyle;
 }
@@ -67,7 +65,6 @@ const styles = StyleSheet.create<Style>({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    paddingBottom: 100,
     borderWidth: 2,
     borderColor: 'red',
   },
@@ -75,15 +72,21 @@ const styles = StyleSheet.create<Style>({
     fontSize: 25,
     textAlign: 'center',
   },
-  makeMyMealContainer: {
+  mainsContainer: {
     flex: 0.3,
     borderWidth: 2,
     borderColor: 'red',
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  recentContainer: {
-    flex: 0.7,
+  sidesContainer: {
+    flex: 0.3,
+    borderWidth: 2,
+    borderColor: 'red',
+    alignItems: 'center',
+    paddingTop: 10,
+  },
+  drinksContainer: {
+    flex: 0.3,
     borderWidth: 2,
     borderColor: 'red',
     alignItems: 'center',

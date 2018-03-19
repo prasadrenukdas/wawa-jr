@@ -2,8 +2,7 @@ import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
 
 import { configureStore } from 'src/Store';
-
-import HomeScreen from 'src/home/HomeScreen';
+import { registerScreens } from './screens';
 
 const store = configureStore();
 
@@ -11,7 +10,7 @@ const store = configureStore();
 // paths for the app, set the base navigation type (single screen, tabs, or
 // other options available), and handle initial navigation.
 
-Navigation.registerComponent('Home', () => HomeScreen, store, Provider);
+registerScreens();
 
 Navigation.startSingleScreenApp({
   screen: {
