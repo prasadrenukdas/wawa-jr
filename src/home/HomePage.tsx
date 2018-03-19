@@ -19,6 +19,7 @@ import {
 
 const { width } = Dimensions.get('window');
 const height = width * 0.8;
+const Carousel = require('react-native-carousel');
 
 interface Props {
   navigator: any;
@@ -35,7 +36,7 @@ export class Home extends React.Component<Props, State> {
   }
   onPressButton() {
     this.props.navigator.push({
-      screen: 'Example',
+      screen: 'MakeMyMeal',
       title: 'Pushed Screen',
     });
   }
@@ -87,14 +88,25 @@ export class Home extends React.Component<Props, State> {
           <View>
             <Text style={styles.makeMyMealHeader}>Recents</Text>
           </View>
+          <Carousel animate={false} width={375}>
+            <View style={styles.recentsContainer}>
+              <Text>Page 1</Text>
+            </View>
+            <View style={styles.recentsContainer}>
+              <Text>Page 2</Text>
+            </View>
+            <View style={styles.recentsContainer}>
+              <Text>Page 3</Text>
+            </View>
+          </Carousel>
 
-          <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator>
+          {/*   <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator>
             {images.map(image => (
               <TouchableHighlight onPress={this.onPressButton}>
                 <Image style={styles.image} source={image.source} />
               </TouchableHighlight>
             ))}
-          </ScrollView>
+          </ScrollView> */}
         </View>
       </View>
     );
@@ -114,6 +126,7 @@ interface Style {
   recentHeader: TextStyle;
   scrollContainer;
   image;
+  recentsContainer;
 }
 
 // React hoists variables. We declare the styles here to keep them out of the
@@ -138,6 +151,13 @@ const styles = StyleSheet.create<Style>({
     paddingBottom: 100,
     borderWidth: 2,
     borderColor: 'red',
+  },
+  recentsContainer: {
+    width: 375,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
   },
   textContent: {
     fontSize: 25,
