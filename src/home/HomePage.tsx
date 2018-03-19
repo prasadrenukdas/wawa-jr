@@ -88,7 +88,7 @@ export class Home extends React.Component<Props, State> {
           <View>
             <Text style={styles.makeMyMealHeader}>Recents</Text>
           </View>
-          <Carousel animate={false} width={375}>
+          <Carousel indicatorOffset={30} animate={false} width={375}>
             <View style={styles.recentsContainer}>
               <Text>Page 1</Text>
             </View>

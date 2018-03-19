@@ -14,6 +14,7 @@ import {
 import { Mains } from 'src/components/Mains';
 import { Sides } from 'src/components/Sides';
 import { Drinks } from 'src/components/Drinks';
+const Carousel = require('react-native-carousel');
 const { width } = Dimensions.get('window');
 const height = width * 0.8;
 
@@ -49,91 +50,60 @@ export class MakeMyMeal extends React.Component {
     return images;
   }
 
-  getSides() {
-    const images = [
-      {
-        source: {
-          uri:
-            'https://cdn.pixabay.com/photo/2017/05/19/07/34/teacup-2325722__340.jpg',
-        },
-      },
-      {
-        source: {
-          uri:
-            'https://cdn.pixabay.com/photo/2017/05/02/22/43/mushroom-2279558__340.jpg',
-        },
-      },
-      {
-        source: {
-          uri:
-            'https://cdn.pixabay.com/photo/2017/05/18/21/54/tower-bridge-2324875__340.jpg',
-        },
-      },
-      {
-        source: {
-          uri:
-            'https://cdn.pixabay.com/photo/2017/05/16/21/24/gorilla-2318998__340.jpg',
-        },
-      },
-    ];
-    return images;
-  }
-
-  getDrinks() {
-    const images = [
-      {
-        source: {
-          uri:
-            'https://cdn.pixabay.com/photo/2017/05/19/07/34/teacup-2325722__340.jpg',
-        },
-      },
-      {
-        source: {
-          uri:
-            'https://cdn.pixabay.com/photo/2017/05/02/22/43/mushroom-2279558__340.jpg',
-        },
-      },
-      {
-        source: {
-          uri:
-            'https://cdn.pixabay.com/photo/2017/05/18/21/54/tower-bridge-2324875__340.jpg',
-        },
-      },
-      {
-        source: {
-          uri:
-            'https://cdn.pixabay.com/photo/2017/05/16/21/24/gorilla-2318998__340.jpg',
-        },
-      },
-    ];
-    return images;
-  }
   render() {
     const images = this.getMainCourse();
     return (
       <ScrollView style={styles.container}>
-        <TouchableHighlight
-          style={styles.mainsContainer}
-          onPress={this.onPressButton}
-          underlayColor="white"
-        >
-          <View style={styles.scrollContainer}>
+        <TouchableHighlight onPress={this.onPressButton} underlayColor="white">
+          <View style={styles.mainsContainer}>
             <View>
               <Text style={styles.makeMyMealHeader}>Main Course</Text>
             </View>
-            <Mains images={images} />
+            <View style={styles.scrollContainer}>
+              <Carousel indicatorOffset={30} animate={false} width={375}>
+                <View style={styles.recentsContainer}>
+                  <Text>Page 1</Text>
+                </View>
+                <View style={styles.recentsContainer}>
+                  <Text>Page 2</Text>
+                </View>
+                <View style={styles.recentsContainer}>
+                  <Text>Page 3</Text>
+                </View>
+              </Carousel>
+            </View>
           </View>
         </TouchableHighlight>
         <View style={styles.sidesContainer}>
           <Text style={styles.recentHeader}>Sides</Text>
           <View style={styles.scrollContainer}>
-            <Sides images={images} />
+            <Carousel indicatorOffset={30} animate={false} width={375}>
+              <View style={styles.recentsContainer}>
+                <Text>Page 1</Text>
+              </View>
+              <View style={styles.recentsContainer}>
+                <Text>Page 2</Text>
+              </View>
+              <View style={styles.recentsContainer}>
+                <Text>Page 3</Text>
+              </View>
+            </Carousel>
           </View>
         </View>
         <View style={styles.drinksContainer}>
           <Text style={styles.recentHeader}>Drinks</Text>
           <View style={styles.scrollContainer}>
-            <Drinks images={images} />
+            <Carousel indicatorOffset={30} animate={false} width={375}>
+              <View style={styles.recentsContainer}>
+                <Text>Page 1</Text>
+              </View>
+              <View style={styles.recentsContainer}>
+                <Text>Page 2</Text>
+              </View>
+              <View style={styles.recentsContainer}>
+                <Text>Page 3</Text>
+              </View>
+            </Carousel>
           </View>
         </View>
         <View style={styles.makeItContainer}>
@@ -159,11 +129,19 @@ interface Style {
   scrollContainer;
   image;
   makeItContainer;
+  recentsContainer;
 }
 
 // React hoists variables. We declare the styles here to keep them out of the
 // way of the component definition
 const styles = StyleSheet.create<Style>({
+  recentsContainer: {
+    width: 375,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
   makeItContainer: {
     flex: 0.5,
   },
