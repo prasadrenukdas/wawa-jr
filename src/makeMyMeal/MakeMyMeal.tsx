@@ -11,11 +11,9 @@ import {
   Dimensions,
   ScrollView,
 } from 'react-native';
-import { Mains } from 'src/components/Mains';
-import { Sides } from 'src/components/Sides';
-import { Drinks } from 'src/components/Drinks';
+
 import { Example } from 'src/carouselExample/ExamplePage';
-const Carousel = require('react-native-carousel');
+
 const { width } = Dimensions.get('window');
 const height = width * 0.8;
 interface Props {}
@@ -75,7 +73,7 @@ export class MakeMyMeal extends React.Component<Props, State> {
         <TouchableHighlight onPress={this.onPressButton} underlayColor="white">
           <View style={styles.mainsContainer}>
             <View>
-              <Text style={styles.makeMyMealHeader}>Main Course</Text>
+              <Text style={styles.title}>Main Course</Text>
             </View>
             <View style={styles.scrollContainer}>
               <Example data={this.state.mains} />
@@ -83,19 +81,19 @@ export class MakeMyMeal extends React.Component<Props, State> {
           </View>
         </TouchableHighlight>
         <View style={styles.sidesContainer}>
-          <Text style={styles.recentHeader}>Sides</Text>
+          <Text style={styles.title}>Sides</Text>
           <View style={styles.scrollContainer}>
             <Example data={this.state.sides} />
           </View>
         </View>
         <View style={styles.drinksContainer}>
-          <Text style={styles.recentHeader}>Drinks</Text>
+          <Text style={styles.title}>Drinks</Text>
           <View style={styles.scrollContainer}>
             <Example data={this.state.drinks} />
           </View>
         </View>
         <View style={styles.makeItContainer}>
-          <Text>Make it</Text>
+          <Text style={styles.makeItHeader}>Make it</Text>
         </View>
       </ScrollView>
     );
@@ -118,11 +116,31 @@ interface Style {
   image;
   makeItContainer;
   recentsContainer;
+  title;
+  makeItHeader;
 }
 
 // React hoists variables. We declare the styles here to keep them out of the
 // way of the component definition
 const styles = StyleSheet.create<Style>({
+  makeItHeader: {
+    fontSize: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    fontWeight: 'bold',
+    backgroundColor: 'rgb(196, 18, 48)',
+    color: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    paddingHorizontal: 30,
+    backgroundColor: 'transparent',
+    color: 'rgb(66, 32, 5)',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
   recentsContainer: {
     width: 375,
     flex: 1,
@@ -131,12 +149,13 @@ const styles = StyleSheet.create<Style>({
     backgroundColor: 'transparent',
   },
   makeItContainer: {
-    flex: 0.5,
+    marginTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgb(196, 18, 48)',
   },
   scrollContainer: {
     height,
-    borderWidth: 2,
-    borderColor: 'red',
     alignItems: 'center',
     paddingTop: 10,
   },
@@ -147,28 +166,19 @@ const styles = StyleSheet.create<Style>({
   container: {
     flex: 1,
     flexDirection: 'column',
-    // justifyContent: 'center',
-    borderWidth: 2,
-    borderColor: 'red',
   },
   textContent: {
     fontSize: 25,
     textAlign: 'center',
   },
   mainsContainer: {
-    borderWidth: 2,
-    borderColor: 'red',
     alignItems: 'center',
   },
   sidesContainer: {
-    borderWidth: 2,
-    borderColor: 'red',
     alignItems: 'center',
     paddingTop: 10,
   },
   drinksContainer: {
-    borderWidth: 2,
-    borderColor: 'red',
     alignItems: 'center',
     paddingTop: 10,
   },

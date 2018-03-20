@@ -54,39 +54,10 @@ export class Home extends React.Component<Props, State> {
   onPressButton() {
     this.props.navigator.push({
       screen: 'MakeMyMeal',
-      title: 'Pushed Screen',
+      title: 'Make My Meal',
     });
   }
 
-  getImages() {
-    const images = [
-      {
-        source: {
-          uri:
-            'https://cdn.pixabay.com/photo/2017/05/19/07/34/teacup-2325722__340.jpg',
-        },
-      },
-      {
-        source: {
-          uri:
-            'https://cdn.pixabay.com/photo/2017/05/02/22/43/mushroom-2279558__340.jpg',
-        },
-      },
-      {
-        source: {
-          uri:
-            'https://cdn.pixabay.com/photo/2017/05/18/21/54/tower-bridge-2324875__340.jpg',
-        },
-      },
-      {
-        source: {
-          uri:
-            'https://cdn.pixabay.com/photo/2017/05/16/21/24/gorilla-2318998__340.jpg',
-        },
-      },
-    ];
-    return images;
-  }
   render() {
     return (
       <View style={styles.container}>
@@ -101,7 +72,7 @@ export class Home extends React.Component<Props, State> {
         </TouchableHighlight>
         <View style={styles.scrollContainer}>
           <View>
-            <Text style={styles.makeMyMealHeader}>Recents</Text>
+            <Text style={styles.title}>{`Recents`}</Text>
           </View>
           <Example data={this.state.data} />
         </View>
@@ -124,16 +95,25 @@ interface Style {
   scrollContainer;
   image;
   recentsContainer;
+  title;
 }
 
 // React hoists variables. We declare the styles here to keep them out of the
 // way of the component definition
 const styles = StyleSheet.create<Style>({
+  title: {
+    paddingHorizontal: 30,
+    backgroundColor: 'transparent',
+    color: 'rgb(66, 32, 5)',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    paddingTop: 10,
+    paddingBottom: 20,
+  },
   scrollContainer: {
     height,
     flex: 0.7,
-    borderWidth: 2,
-    borderColor: 'red',
     alignItems: 'center',
     paddingTop: 10,
   },
@@ -146,8 +126,6 @@ const styles = StyleSheet.create<Style>({
     flexDirection: 'column',
     justifyContent: 'center',
     paddingBottom: 100,
-    borderWidth: 2,
-    borderColor: 'red',
   },
   recentsContainer: {
     width: 375,
@@ -162,10 +140,9 @@ const styles = StyleSheet.create<Style>({
   },
   makeMyMealContainer: {
     flex: 0.3,
-    borderWidth: 2,
-    borderColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'rgb(196, 18, 48)',
   },
   recentContainer: {
     flex: 0.7,
@@ -176,6 +153,10 @@ const styles = StyleSheet.create<Style>({
   },
   makeMyMealHeader: {
     fontSize: 25,
+    backgroundColor: 'rgb(196, 18, 48)',
+    color: 'white',
+    fontWeight: 'bold',
+    fontFamily: 'Avenir-Medium',
   },
   recentHeader: {
     fontSize: 25,

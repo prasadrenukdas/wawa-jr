@@ -115,10 +115,11 @@ export class Example extends React.Component<Props, State> {
 
     return (
       <View style={styles.container}>
+        <Text style={styles.subtitle}>{title}</Text>
         <Carousel
           ref={c => (this._slider1Ref = c)}
           data={this.props.data ? this.props.data : ENTRIES1}
-          renderItem={this.renderDarkItem}
+          renderItem={this.renderLightItem}
           sliderWidth={sliderWidth}
           itemWidth={itemWidth}
           firstItem={SLIDER_1_FIRST_ITEM}
@@ -130,9 +131,6 @@ export class Example extends React.Component<Props, State> {
           loopClonesPerSide={2}
           autoplayDelay={500}
           autoplayInterval={3000}
-          // tslint:disable-next-line:jsx-curly-spacing
-          // tslint:disable-next-line:arrow-parens
-          // tslint:disable-next-line:ter-arrow-parens
           // tslint:disable-next-line:jsx-no-lambda
           onSnapToItem={index => this.setState({ slider1ActiveSlide: index })}
         />
@@ -152,21 +150,8 @@ export class Example extends React.Component<Props, State> {
     );
   }
 
-  /*  renderItem({ item, index }) {
-    return (
-      <View>
-        <Text style={styles.title}>{item.title}</Text>
-      </View>
-    );
-  } */
-
   render() {
-    // tslint:disable-next-line:max-line-length
-    const example1 = this.mainExample(
-      1,
-      // tslint:disable-next-line:max-line-length
-      'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots',
-    );
+    const example1 = this.mainExample(1, 'Tap on the item to select');
 
     return (
       <SafeAreaView style={styles.safeArea}>

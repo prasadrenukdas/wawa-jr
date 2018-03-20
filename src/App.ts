@@ -15,6 +15,6 @@ registerScreens();
 Navigation.startSingleScreenApp({
   screen: {
     screen: 'Home',
-    title: 'Home',
+    title: 'WAWA JR',
   },
 });

@@ -4085,7 +4085,7 @@ react-native-safe-area-view@^0.7.0:
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
-react-native-snap-carousel@^3.6.0:
+react-native-snap-carousel@3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/react-native-snap-carousel/-/react-native-snap-carousel-3.6.0.tgz#bbd4c988314500af4a695f787f592fdfcd5c3df1"
   dependencies:
