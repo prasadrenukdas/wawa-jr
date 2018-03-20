@@ -5,6 +5,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
+import reactNativePopupDialog from 'react-native-popup-dialog';
 import {
   StyleSheet,
   ViewStyle,
@@ -13,9 +14,13 @@ import {
   TextStyle,
   TouchableHighlight,
   Dimensions,
+  Button,
 } from 'react-native';
 import { Example } from 'src/carouselExample/ExamplePage';
+import reactNativeBarcodeBuilder from 'react-native-barcode-builder';
 
+const PopupDialog = reactNativePopupDialog;
+const Barcode = reactNativeBarcodeBuilder;
 const { width } = Dimensions.get('window');
 const height = width * 0.8;
 
@@ -30,6 +35,7 @@ interface State {
 
 // Export component without provider for testing purposes
 export class Home extends React.Component<Props, State> {
+  popupDialog: any;
   constructor(props) {
     super(props);
     this.onPressButton = this.onPressButton.bind(this);
@@ -58,6 +64,10 @@ export class Home extends React.Component<Props, State> {
     });
   }
 
+  showPopup() {
+    this.popupDialog.showPopup();
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -74,8 +84,26 @@ export class Home extends React.Component<Props, State> {
           <View>
             <Text style={styles.title}>{`Recents`}</Text>
           </View>
-          <Example data={this.state.data} />
+          <TouchableHighlight
+            // tslint:disable-next-line:jsx-no-lambda
+            onPress={() => {
+              this.popupDialog.show();
+            }}
+            underlayColor="white"
+          >
+            <Example data={this.state.data} />
+          </TouchableHighlight>
         </View>
+
+        <PopupDialog
+          ref={popupDialog => {
+            this.popupDialog = popupDialog;
+          }}
+        >
+          <View>
+            <Barcode value="Hello World" format="CODE128" />
+          </View>
+        </PopupDialog>
       </View>
     );
   }

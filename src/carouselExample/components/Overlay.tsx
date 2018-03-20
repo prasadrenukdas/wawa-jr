@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Overlay } from 'react-native-overlay';
-const BlurView = require('react-native-blur').BlurView;
+import { BlurView } from 'react-native-blur';
+// const BlurView = require('react-native-blur').BlurView;
 import {
   StyleSheet,
   ViewStyle,
@@ -23,7 +24,7 @@ export class LoadingOverlay extends React.Component<Props, State> {
     return (
       <Overlay isVisible={this.props.isVisible}>
         <BlurView style={styles.background} blurType="dark">
-          <ActivityIndicatorIOS size="large" animating style={styles.spinner} />
+          <Text>hola</Text>
         </BlurView>
       </Overlay>
     );

@@ -4,16 +4,33 @@ import { PropTypes } from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import { styles } from '../styles/SliderEntry';
 
+import reactNativePopupDialog from 'react-native-popup-dialog';
+import reactNativeBarcodeBuilder from 'react-native-barcode-builder';
+import reactNativeModalOverlay from 'react-native-modal-overlay';
+
+const Overlay = reactNativeModalOverlay;
+
 interface Props {
   data: any;
   parallax: any;
   parallaxProps: any;
   even: any;
 }
-interface State {}
+
+const PopupDialog = reactNativePopupDialog;
+const DialogTitle = reactNativePopupDialog;
+const Barcode = reactNativeBarcodeBuilder;
+interface State {
+  modalVisible;
+}
+
 export class SliderEntry extends React.Component<Props, State> {
+  popupDialog: any;
   constructor(props) {
     super(props);
+    this.state = {
+      modalVisible: true,
+    };
   }
   static propTypes = {
     data: PropTypes.object.isRequired,
@@ -48,6 +65,13 @@ export class SliderEntry extends React.Component<Props, State> {
     );
   }
 
+  onCarouselPress = () => {
+    this.setState({
+      modalVisible: true,
+    });
+    this.popupDialog.show();
+  };
+
   render() {
     const { data: { title, subtitle }, even } = this.props;
 
@@ -63,28 +87,53 @@ export class SliderEntry extends React.Component<Props, State> {
     );
 
     return (
-      <TouchableOpacity activeOpacity={1} style={styles.slideInnerContainer}>
-        <View style={styles.shadow} />
-        <View
-          style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
+      <View>
+        <TouchableOpacity
+          onPress={this.onCarouselPress}
+          activeOpacity={1}
+          style={styles.slideInnerContainer}
         >
-          {this.image}
+          <View style={styles.shadow} />
           <View
-            style={[styles.radiusMask, even ? styles.radiusMaskEven : {}]}
-          />
-        </View>
-        <View
-          style={[styles.textContainer, even ? styles.textContainerEven : {}]}
-        >
-          {uppercaseTitle}
-          <Text
-            style={[styles.subtitle, even ? styles.subtitleEven : {}]}
-            numberOfLines={2}
+            style={[
+              styles.imageContainer,
+              even ? styles.imageContainerEven : {},
+            ]}
           >
-            {subtitle}
-          </Text>
-        </View>
-      </TouchableOpacity>
+            {this.image}
+            <View
+              style={[styles.radiusMask, even ? styles.radiusMaskEven : {}]}
+            />
+          </View>
+          <View
+            style={[styles.textContainer, even ? styles.textContainerEven : {}]}
+          >
+            {uppercaseTitle}
+            <Text
+              style={[styles.subtitle, even ? styles.subtitleEven : {}]}
+              numberOfLines={2}
+            >
+              {subtitle}
+            </Text>
+          </View>
+          <PopupDialog
+            style={{}}
+            ref={popupDialog => {
+              this.popupDialog = popupDialog;
+            }}
+          >
+            <View>
+              <Barcode
+                marginTop="100"
+                width="2"
+                height="50"
+                value="Hello World"
+                format="CODE128"
+              />
+            </View>
+          </PopupDialog>
+        </TouchableOpacity>
+      </View>
     );
   }
 }

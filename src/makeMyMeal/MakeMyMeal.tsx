@@ -69,33 +69,38 @@ export class MakeMyMeal extends React.Component<Props, State> {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <TouchableHighlight onPress={this.onPressButton} underlayColor="white">
-          <View style={styles.mainsContainer}>
-            <View>
-              <Text style={styles.title}>Main Course</Text>
+      <View style={styles.container}>
+        <ScrollView>
+          <TouchableHighlight
+            onPress={this.onPressButton}
+            underlayColor="white"
+          >
+            <View style={styles.mainsContainer}>
+              <View>
+                <Text style={styles.title}>Main Course</Text>
+              </View>
+              <View style={styles.scrollContainer}>
+                <Example data={this.state.mains} />
+              </View>
             </View>
+          </TouchableHighlight>
+          <View style={styles.sidesContainer}>
+            <Text style={styles.title}>Sides</Text>
             <View style={styles.scrollContainer}>
-              <Example data={this.state.mains} />
+              <Example data={this.state.sides} />
             </View>
           </View>
-        </TouchableHighlight>
-        <View style={styles.sidesContainer}>
-          <Text style={styles.title}>Sides</Text>
-          <View style={styles.scrollContainer}>
-            <Example data={this.state.sides} />
+          <View style={styles.drinksContainer}>
+            <Text style={styles.title}>Drinks</Text>
+            <View style={styles.scrollContainer}>
+              <Example data={this.state.drinks} />
+            </View>
           </View>
-        </View>
-        <View style={styles.drinksContainer}>
-          <Text style={styles.title}>Drinks</Text>
-          <View style={styles.scrollContainer}>
-            <Example data={this.state.drinks} />
-          </View>
-        </View>
+        </ScrollView>
         <View style={styles.makeItContainer}>
           <Text style={styles.makeItHeader}>Make it</Text>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -125,8 +130,8 @@ interface Style {
 const styles = StyleSheet.create<Style>({
   makeItHeader: {
     fontSize: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 15,
+    paddingBottom: 15,
     fontWeight: 'bold',
     backgroundColor: 'rgb(196, 18, 48)',
     color: 'white',

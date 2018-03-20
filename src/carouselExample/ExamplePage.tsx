@@ -41,6 +41,10 @@ export class Example extends React.Component<Props, State> {
     };
   }
 
+  yoo = () => {
+    alert('hello');
+  };
+
   renderItem({ item, index, parallaxProps }) {
     return (
       <SliderEntry
