@@ -17,14 +17,14 @@ import { connect } from 'react-redux';
 import reactNativeSnapCarousel, {
   Pagination,
 } from 'react-native-snap-carousel';
-// import { Pagination } from 'react-native-snap-carousel';
 
 const Carousel = reactNativeSnapCarousel;
-
 const IS_ANDROID = Platform.OS === 'android';
 const SLIDER_1_FIRST_ITEM = 1;
 
-interface Props {}
+interface Props {
+  data;
+}
 
 interface State {
   slider1ActiveSlide: any;
@@ -33,28 +33,15 @@ interface State {
 export class Example extends React.Component<Props, State> {
   // tslint:disable-next-line:variable-name
   _slider1Ref: any;
-  slider1Ref: any;
   constructor(props) {
     super(props);
-    this.mainExample = this.mainExample.bind(this);
     this.state = {
       slider1ActiveSlide: SLIDER_1_FIRST_ITEM,
       entries: ENTRIES2,
     };
   }
 
-  componentDidMount() {
-    this.setState({
-      entries: ENTRIES1,
-    });
-  }
-
-  /*  renderItem({ item, index }) {
-     return <SliderEntry data={item} even={(index + 1) % 2 === 0} />;
-   } */
-
-  // tslint:disable-next-line:function-name
-  _renderItem({ item, index, parallaxProps }) {
+  renderItem({ item, index, parallaxProps }) {
     return (
       <SliderEntry
         parallaxProps
@@ -65,24 +52,25 @@ export class Example extends React.Component<Props, State> {
     );
   }
 
-  // tslint:disable-next-line:function-name
-  _renderItemWithParallax({ item, index }, parallaxProps) {
+  renderItemWithParallax({ item, index }, parallaxProps) {
     return (
       <SliderEntry
         data={item}
         even={(index + 1) % 2 === 0}
-        parallax
+        parallax={false}
         parallaxProps={parallaxProps}
       />
     );
   }
 
   renderLightItem({ item }) {
-    return <SliderEntry data={item} even={false} parallax parallaxProps />;
+    return (
+      <SliderEntry data={item} even={false} parallax={false} parallaxProps />
+    );
   }
 
   renderDarkItem({ item }) {
-    return <SliderEntry data={item} even parallax parallaxProps />;
+    return <SliderEntry data={item} even parallax={false} parallaxProps />;
   }
 
   layoutExample(number, title, type) {
@@ -103,7 +91,7 @@ export class Example extends React.Component<Props, State> {
         </Text>
         <Carousel
           data={isTinder ? ENTRIES2 : ENTRIES1}
-          renderItem={isTinder ? this._renderItem : this._renderItem}
+          renderItem={isTinder ? this.renderItem : this.renderItem}
           sliderWidth={sliderWidth}
           itemWidth={itemWidth}
           containerCustomStyle={styles.slider}
@@ -122,8 +110,8 @@ export class Example extends React.Component<Props, State> {
       <View style={styles.container}>
         <Carousel
           ref={c => (this._slider1Ref = c)}
-          data={ENTRIES1}
-          renderItem={this._renderItem}
+          data={this.props.data ? this.props.data : ENTRIES1}
+          renderItem={this.renderDarkItem}
           sliderWidth={sliderWidth}
           itemWidth={itemWidth}
           firstItem={SLIDER_1_FIRST_ITEM}
@@ -182,7 +170,6 @@ export class Example extends React.Component<Props, State> {
 
           <ScrollView style={styles.scrollview} scrollEventThrottle={200}>
             {example1}
-            {example4}
           </ScrollView>
         </View>
       </SafeAreaView>

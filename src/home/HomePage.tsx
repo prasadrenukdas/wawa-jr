@@ -16,6 +16,8 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
+import { Example } from 'src/carouselExample/ExamplePage';
+import { ENTRIES1 } from 'src/carouselExample/static/entries';
 
 const { width } = Dimensions.get('window');
 const height = width * 0.8;
@@ -26,13 +28,32 @@ interface Props {
   images: any;
 }
 
-interface State {}
+interface State {
+  data;
+}
 
 // Export component without provider for testing purposes
 export class Home extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.onPressButton = this.onPressButton.bind(this);
+    this.state = {
+      data: [],
+    };
+  }
+
+  componentWillMount() {
+    fetch('https://s3.amazonaws.com/mob-training/wawa/wawa-jr.json')
+      .then(data => data.json())
+      .then(data =>
+        data.menu.main.map(item => {
+          return {
+            illustration: item.url,
+            title: item.name,
+          };
+        }),
+      )
+      .then(data => this.setState({ data }));
   }
   onPressButton() {
     this.props.navigator.push({
@@ -88,7 +109,8 @@ export class Home extends React.Component<Props, State> {
           <View>
             <Text style={styles.makeMyMealHeader}>Recents</Text>
           </View>
-          <Carousel indicatorOffset={30} animate={false} width={375}>
+          <Example data={this.state.data} />
+          {/*   <Carousel indicatorOffset={30} animate={false} width={375}>
             <View style={styles.recentsContainer}>
               <Text>Page 1</Text>
             </View>
@@ -98,7 +120,7 @@ export class Home extends React.Component<Props, State> {
             <View style={styles.recentsContainer}>
               <Text>Page 3</Text>
             </View>
-          </Carousel>
+          </Carousel> */}
 
           {/*   <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator>
             {images.map(image => (
