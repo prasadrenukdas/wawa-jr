@@ -12,16 +12,12 @@ import {
   Text,
   TextStyle,
   TouchableHighlight,
-  ScrollView,
   Dimensions,
-  Image,
 } from 'react-native';
 import { Example } from 'src/carouselExample/ExamplePage';
-import { ENTRIES1 } from 'src/carouselExample/static/entries';
 
 const { width } = Dimensions.get('window');
 const height = width * 0.8;
-const Carousel = require('react-native-carousel');
 
 interface Props {
   navigator: any;
@@ -57,7 +53,7 @@ export class Home extends React.Component<Props, State> {
   }
   onPressButton() {
     this.props.navigator.push({
-      screen: 'Example',
+      screen: 'MakeMyMeal',
       title: 'Pushed Screen',
     });
   }
@@ -92,8 +88,6 @@ export class Home extends React.Component<Props, State> {
     return images;
   }
   render() {
-    const images = this.getImages();
-
     return (
       <View style={styles.container}>
         <TouchableHighlight
@@ -110,25 +104,6 @@ export class Home extends React.Component<Props, State> {
             <Text style={styles.makeMyMealHeader}>Recents</Text>
           </View>
           <Example data={this.state.data} />
-          {/*   <Carousel indicatorOffset={30} animate={false} width={375}>
-            <View style={styles.recentsContainer}>
-              <Text>Page 1</Text>
-            </View>
-            <View style={styles.recentsContainer}>
-              <Text>Page 2</Text>
-            </View>
-            <View style={styles.recentsContainer}>
-              <Text>Page 3</Text>
-            </View>
-          </Carousel> */}
-
-          {/*   <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator>
-            {images.map(image => (
-              <TouchableHighlight onPress={this.onPressButton}>
-                <Image style={styles.image} source={image.source} />
-              </TouchableHighlight>
-            ))}
-          </ScrollView> */}
         </View>
       </View>
     );

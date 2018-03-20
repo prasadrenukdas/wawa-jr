@@ -44,7 +44,7 @@ export class Example extends React.Component<Props, State> {
   renderItem({ item, index, parallaxProps }) {
     return (
       <SliderEntry
-        parallaxProps
+        parallaxProps={parallaxProps}
         data={item}
         parallax={false}
         even={(index + 1) % 2 === 0}
@@ -69,8 +69,15 @@ export class Example extends React.Component<Props, State> {
     );
   }
 
-  renderDarkItem({ item }) {
-    return <SliderEntry data={item} even parallax={false} parallaxProps />;
+  renderDarkItem({ item }, parallaxProps) {
+    return (
+      <SliderEntry
+        data={item}
+        even
+        parallax={false}
+        parallaxProps={parallaxProps}
+      />
+    );
   }
 
   layoutExample(number, title, type) {
@@ -123,6 +130,11 @@ export class Example extends React.Component<Props, State> {
           loopClonesPerSide={2}
           autoplayDelay={500}
           autoplayInterval={3000}
+          // tslint:disable-next-line:jsx-curly-spacing
+          // tslint:disable-next-line:arrow-parens
+          // tslint:disable-next-line:ter-arrow-parens
+          // tslint:disable-next-line:jsx-no-lambda
+          onSnapToItem={index => this.setState({ slider1ActiveSlide: index })}
         />
         <Pagination
           dotsLength={ENTRIES1.length}
@@ -155,11 +167,7 @@ export class Example extends React.Component<Props, State> {
       // tslint:disable-next-line:max-line-length
       'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots',
     );
-    const example4 = this.layoutExample(
-      4,
-      '"Tinder-like" layout | Loop',
-      'tinder',
-    );
+
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
