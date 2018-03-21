@@ -80,20 +80,20 @@ export class MakeMyMeal extends React.Component<Props, State> {
                 <Text style={styles.title}>Main Course</Text>
               </View>
               <View style={styles.scrollContainer}>
-                <Example data={this.state.mains} />
+                <Example showBarcode={false} data={this.state.mains} />
               </View>
             </View>
           </TouchableHighlight>
           <View style={styles.sidesContainer}>
             <Text style={styles.title}>Sides</Text>
             <View style={styles.scrollContainer}>
-              <Example data={this.state.sides} />
+              <Example showBarcode={false} data={this.state.sides} />
             </View>
           </View>
           <View style={styles.drinksContainer}>
             <Text style={styles.title}>Drinks</Text>
             <View style={styles.scrollContainer}>
-              <Example data={this.state.drinks} />
+              <Example showBarcode={false} data={this.state.drinks} />
             </View>
           </View>
         </ScrollView>
