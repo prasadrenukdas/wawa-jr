@@ -15,6 +15,7 @@ import {
   TouchableHighlight,
   Dimensions,
   Button,
+  AsyncStorage,
 } from 'react-native';
 import { Example } from 'src/carouselExample/ExamplePage';
 import reactNativeBarcodeBuilder from 'react-native-barcode-builder';
@@ -44,8 +45,19 @@ export class Home extends React.Component<Props, State> {
     };
   }
 
-  componentWillMount() {
-    fetch('https://s3.amazonaws.com/mob-training/wawa/wawa-jr.json')
+  async componentWillMount() {
+    // AsyncStorage.removeItem('item');
+    try {
+      const value = await AsyncStorage.getItem('item');
+      if (value !== null) {
+        this.setState({
+          data: JSON.parse(value),
+        });
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+    /*   fetch('https://s3.amazonaws.com/mob-training/wawa/wawa-jr.json')
       .then(data => data.json())
       .then(data =>
         data.menu.main.map(item => {
@@ -55,7 +67,7 @@ export class Home extends React.Component<Props, State> {
           };
         }),
       )
-      .then(data => this.setState({ data }));
+      .then(data => this.setState({ data })); */
   }
   onPressButton() {
     this.props.navigator.push({

@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  AsyncStorage,
+} from 'react-native';
 import { PropTypes } from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import { styles } from '../styles/SliderEntry';
@@ -18,8 +24,6 @@ interface Props {
   showBarcode: any;
 }
 
-const PopupDialog = reactNativePopupDialog;
-const DialogTitle = reactNativePopupDialog;
 const Barcode = reactNativeBarcodeBuilder;
 interface State {
   modalVisible;
@@ -92,10 +96,29 @@ export class SliderEntry extends React.Component<Props, State> {
     );
   }
 
-  onCarouselPress = showBarcode => {
+  onCarouselPress = (data, showBarcode) => {
     this.setState({
       modalVisible: !this.state.modalVisible,
     });
+    if (!showBarcode) {
+      AsyncStorage.getItem('item')
+        .then(storedItems => {
+          debugger;
+          if (storedItems) {
+            const newPayload = JSON.parse(storedItems);
+            newPayload.push(data);
+            AsyncStorage.setItem('item', JSON.stringify(newPayload));
+          } else {
+            debugger;
+            const payload = [];
+            payload.push(data);
+            AsyncStorage.setItem('item', JSON.stringify(payload));
+          }
+        })
+        .catch(error => {
+          debugger;
+        });
+    }
   };
 
   render() {
@@ -116,13 +139,16 @@ export class SliderEntry extends React.Component<Props, State> {
       <View>
         <TouchableOpacity
           // tslint:disable-next-line:jsx-no-lambda
-          onPress={() => this.onCarouselPress(this.props.showBarcode)}
+          onPress={() =>
+            this.onCarouselPress(this.props.data, this.props.showBarcode)
+          }
           activeOpacity={1}
           style={styles.slideInnerContainer}
         >
           <ShowOverlay
             show={this.state.modalVisible}
             showBarcode={this.props.showBarcode}
+            data={this.props.data}
           />
           <View style={styles.shadow} />
           <View
