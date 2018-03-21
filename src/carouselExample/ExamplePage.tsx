@@ -24,6 +24,7 @@ const SLIDER_1_FIRST_ITEM = 1;
 
 interface Props {
   data;
+  showBarcode;
 }
 
 interface State {
@@ -41,13 +42,12 @@ export class Example extends React.Component<Props, State> {
     };
   }
 
-  yoo = () => {
-    alert('hello');
-  };
+  yoo = () => {};
 
   renderItem({ item, index, parallaxProps }) {
     return (
       <SliderEntry
+        showBarcode={false}
         parallaxProps={parallaxProps}
         data={item}
         parallax={false}
@@ -59,6 +59,7 @@ export class Example extends React.Component<Props, State> {
   renderItemWithParallax({ item, index }, parallaxProps) {
     return (
       <SliderEntry
+        showBarcode={false}
         data={item}
         even={(index + 1) % 2 === 0}
         parallax={false}
@@ -67,15 +68,22 @@ export class Example extends React.Component<Props, State> {
     );
   }
 
-  renderLightItem({ item }) {
+  renderLightItem({ item }, showBarcode) {
     return (
-      <SliderEntry data={item} even={false} parallax={false} parallaxProps />
+      <SliderEntry
+        showBarcode={showBarcode}
+        data={item}
+        even={false}
+        parallax={false}
+        parallaxProps
+      />
     );
   }
 
   renderDarkItem({ item }, parallaxProps) {
     return (
       <SliderEntry
+        showBarcode={false}
         data={item}
         even
         parallax={false}
@@ -114,7 +122,7 @@ export class Example extends React.Component<Props, State> {
     );
   }
 
-  mainExample(number, title) {
+  mainExample(number, title, showBarcode) {
     const { slider1ActiveSlide } = this.state;
 
     return (
@@ -123,7 +131,8 @@ export class Example extends React.Component<Props, State> {
         <Carousel
           ref={c => (this._slider1Ref = c)}
           data={this.props.data ? this.props.data : ENTRIES1}
-          renderItem={this.renderLightItem}
+          // tslint:disable-next-line:jsx-no-lambda
+          renderItem={item => this.renderLightItem(item, showBarcode)}
           sliderWidth={sliderWidth}
           itemWidth={itemWidth}
           firstItem={SLIDER_1_FIRST_ITEM}
@@ -155,7 +164,11 @@ export class Example extends React.Component<Props, State> {
   }
 
   render() {
-    const example1 = this.mainExample(1, 'Tap on the item to select');
+    const example1 = this.mainExample(
+      1,
+      'Tap on the item to select',
+      this.props.showBarcode,
+    );
 
     return (
       <SafeAreaView style={styles.safeArea}>

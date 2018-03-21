@@ -21,12 +21,23 @@ export const itemWidth = slideWidth + itemHorizontalMargin * 2;
 const entryBorderRadius = 8;
 
 export const styles = StyleSheet.create({
+  barcodeContainer: {
+    position: 'absolute',
+    marginTop: 50,
+    paddingTop: 50,
+    width: itemWidth,
+    zIndex: 444,
+    height: slideHeight,
+    opacity: 1,
+    backgroundColor: 'white',
+  },
   overlay: {
     position: 'absolute',
+    marginBottom: 200,
     left: 0,
     top: 0,
-    opacity: 0.5,
-    backgroundColor: 'black',
+    opacity: 0.7,
+    backgroundColor: 'white',
     width: itemWidth,
     zIndex: 3,
     height: slideHeight,

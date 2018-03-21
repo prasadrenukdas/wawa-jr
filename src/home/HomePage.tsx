@@ -91,7 +91,7 @@ export class Home extends React.Component<Props, State> {
             }}
             underlayColor="white"
           >
-            <Example data={this.state.data} />
+            <Example showBarcode data={this.state.data} />
           </TouchableHighlight>
         </View>
 

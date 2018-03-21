@@ -15,6 +15,7 @@ interface Props {
   parallax: any;
   parallaxProps: any;
   even: any;
+  showBarcode: any;
 }
 
 const PopupDialog = reactNativePopupDialog;
@@ -28,13 +29,7 @@ interface State {
 function ShowBarCode(props) {
   if (props.show) {
     return (
-      <Barcode
-        marginTop="100"
-        width="2"
-        height="50"
-        value="Hello World"
-        format="CODE128"
-      />
+      <Barcode width="2" height="70" value="Hello World" format="CODE128" />
     );
   }
   return null;
@@ -45,7 +40,9 @@ function ShowOverlay(props) {
   if (props.show) {
     return (
       <View style={styles.overlay}>
-        <Text>hello</Text>
+        <View style={styles.barcodeContainer}>
+          <ShowBarCode show={props.showBarcode} />
+        </View>
       </View>
     );
   }
@@ -57,8 +54,10 @@ export class SliderEntry extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: true,
+      modalVisible: false,
     };
+
+    this.onCarouselPress = this.onCarouselPress.bind(this);
   }
   static propTypes = {
     data: PropTypes.object.isRequired,
@@ -93,12 +92,10 @@ export class SliderEntry extends React.Component<Props, State> {
     );
   }
 
-  onCarouselPress = () => {
+  onCarouselPress = showBarcode => {
     this.setState({
       modalVisible: !this.state.modalVisible,
     });
-    ShowOverlay(true);
-    // this.popupDialog.show();
   };
 
   render() {
@@ -118,11 +115,15 @@ export class SliderEntry extends React.Component<Props, State> {
     return (
       <View>
         <TouchableOpacity
-          onPress={this.onCarouselPress}
+          // tslint:disable-next-line:jsx-no-lambda
+          onPress={() => this.onCarouselPress(this.props.showBarcode)}
           activeOpacity={1}
           style={styles.slideInnerContainer}
         >
-          <ShowOverlay show={this.state.modalVisible} />
+          <ShowOverlay
+            show={this.state.modalVisible}
+            showBarcode={this.props.showBarcode}
+          />
           <View style={styles.shadow} />
           <View
             style={[
