@@ -24,6 +24,34 @@ interface State {
   modalVisible;
 }
 
+// tslint:disable-next-line:function-name
+function ShowBarCode(props) {
+  if (props.show) {
+    return (
+      <Barcode
+        marginTop="100"
+        width="2"
+        height="50"
+        value="Hello World"
+        format="CODE128"
+      />
+    );
+  }
+  return null;
+}
+
+// tslint:disable-next-line:function-name
+function ShowOverlay(props) {
+  if (props.show) {
+    return (
+      <View style={styles.overlay}>
+        <Text>hello</Text>
+      </View>
+    );
+  }
+  return null;
+}
+
 export class SliderEntry extends React.Component<Props, State> {
   popupDialog: any;
   constructor(props) {
@@ -67,9 +95,10 @@ export class SliderEntry extends React.Component<Props, State> {
 
   onCarouselPress = () => {
     this.setState({
-      modalVisible: true,
+      modalVisible: !this.state.modalVisible,
     });
-    this.popupDialog.show();
+    ShowOverlay(true);
+    // this.popupDialog.show();
   };
 
   render() {
@@ -93,6 +122,7 @@ export class SliderEntry extends React.Component<Props, State> {
           activeOpacity={1}
           style={styles.slideInnerContainer}
         >
+          <ShowOverlay show={this.state.modalVisible} />
           <View style={styles.shadow} />
           <View
             style={[
@@ -116,22 +146,11 @@ export class SliderEntry extends React.Component<Props, State> {
               {subtitle}
             </Text>
           </View>
-          <PopupDialog
-            style={{}}
-            ref={popupDialog => {
-              this.popupDialog = popupDialog;
-            }}
-          >
+          <View>
             <View>
-              <Barcode
-                marginTop="100"
-                width="2"
-                height="50"
-                value="Hello World"
-                format="CODE128"
-              />
+              <ShowBarCode show={false} />
             </View>
-          </PopupDialog>
+          </View>
         </TouchableOpacity>
       </View>
     );

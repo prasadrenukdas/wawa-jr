@@ -21,6 +21,16 @@ export const itemWidth = slideWidth + itemHorizontalMargin * 2;
 const entryBorderRadius = 8;
 
 export const styles = StyleSheet.create({
+  overlay: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    opacity: 0.5,
+    backgroundColor: 'black',
+    width: itemWidth,
+    zIndex: 3,
+    height: slideHeight,
+  },
   slideInnerContainer: {
     width: itemWidth,
     height: slideHeight,
