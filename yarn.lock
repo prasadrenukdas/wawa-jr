@@ -4070,7 +4070,7 @@ react-native-barcode-builder@^1.0.5:
   dependencies:
     jsbarcode "^3.8.0"
 
-react-native-barcode-pdf417@1.1.0:
+react-native-barcode-pdf417@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-barcode-pdf417/-/react-native-barcode-pdf417-1.1.0.tgz#540f0067493c7e9f86d074243ea3d55d84942ad2"
 

@@ -8,9 +8,10 @@ import {
 } from 'react-native';
 import { PropTypes } from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
-import { styles } from '../styles/SliderEntry';
+import { styles, itemWidth } from '../styles/SliderEntry';
 
-import reactNativeBarcodeBuilder from 'react-native-barcode-builder';
+// import reactNativeBarcodeBuilder from 'react-native-barcode-builder';
+import reactNativeBarcodePdf417 from 'react-native-barcode-pdf417';
 
 interface Props {
   data: any;
@@ -20,7 +21,8 @@ interface Props {
   showBarcode: any;
 }
 
-const Barcode = reactNativeBarcodeBuilder;
+const Barcode = reactNativeBarcodePdf417;
+// const Barcode = reactNativeBarcodeBuilder;
 interface State {
   modalVisible;
 }
@@ -29,13 +31,9 @@ interface State {
 function ShowBarCode(props) {
   if (props.show) {
     return (
-      <Barcode
-        marginTop={200}
-        width={3}
-        height={150}
-        value={props.data.title}
-        format="CODE128"
-      />
+      <View>
+        <Barcode text={props.data.title} width={itemWidth} height={100} />
+      </View>
     );
   }
   return null;

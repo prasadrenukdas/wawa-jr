@@ -19,8 +19,11 @@ import reactNativePopupDialog, {
   DialogTitle,
 } from 'react-native-popup-dialog';
 import reactNativeBarcodeBuilder from 'react-native-barcode-builder';
+import reactNativeBarcodePdf417 from 'react-native-barcode-pdf417';
+import { itemWidth } from 'src/carousel/styles/SliderEntry';
 
-const Barcode = reactNativeBarcodeBuilder;
+const Barcode = reactNativeBarcodePdf417;
+// const Barcode = reactNativeBarcodeBuilder;
 const PopupDialog = reactNativePopupDialog;
 const slideAnimation = new SlideAnimation({
   slideFrom: 'bottom',
@@ -114,10 +117,17 @@ export class MakeMyMeal extends React.Component<Props, State> {
             this.popupDialog = popupDialog;
           }}
         >
-          <View>
+          <View
+            style={{
+              padding: 40,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
             <Barcode
-              value={JSON.stringify(this.state.selectedData)}
-              format="CODE128"
+              text={JSON.stringify(this.state.selectedData)}
+              width={itemWidth}
+              height={100}
             />
           </View>
         </PopupDialog>

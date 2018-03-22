@@ -14,14 +14,10 @@ import {
   TextStyle,
   TouchableHighlight,
   Dimensions,
-  Button,
   AsyncStorage,
 } from 'react-native';
 import { WawaCarousel } from 'src/carousel/Carousel';
-import reactNativeBarcodeBuilder from 'react-native-barcode-builder';
 
-const PopupDialog = reactNativePopupDialog;
-const Barcode = reactNativeBarcodeBuilder;
 const { width } = Dimensions.get('window');
 const height = width * 0.8;
 
