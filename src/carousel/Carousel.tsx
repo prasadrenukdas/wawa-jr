@@ -11,7 +11,6 @@ import {
 import { sliderWidth, itemWidth } from './styles/SliderEntry';
 import { SliderEntry } from './components/SliderEntry';
 import { styles, colors } from './styles/index';
-import { ENTRIES1, ENTRIES2 } from './static/entries';
 import { scrollInterpolators, animatedStyles } from './utils/animations';
 import { connect } from 'react-redux';
 import reactNativeSnapCarousel, {
@@ -38,7 +37,7 @@ export class WawaCarousel extends React.Component<Props, State> {
     super(props);
     this.state = {
       slider1ActiveSlide: SLIDER_1_FIRST_ITEM,
-      entries: ENTRIES2,
+      entries: this.props.data,
     };
   }
 
@@ -109,7 +108,7 @@ export class WawaCarousel extends React.Component<Props, State> {
           {title}
         </Text>
         <Carousel
-          data={isTinder ? ENTRIES2 : ENTRIES1}
+          data={this.props.data}
           renderItem={isTinder ? this.renderItem : this.renderItem}
           sliderWidth={sliderWidth}
           itemWidth={itemWidth}
@@ -130,7 +129,7 @@ export class WawaCarousel extends React.Component<Props, State> {
         <Text style={styles.subtitle}>{title}</Text>
         <Carousel
           ref={c => (this._slider1Ref = c)}
-          data={this.props.data ? this.props.data : ENTRIES1}
+          data={this.props.data}
           // tslint:disable-next-line:jsx-no-lambda
           renderItem={item => this.renderLightItem(item, showBarcode)}
           sliderWidth={sliderWidth}

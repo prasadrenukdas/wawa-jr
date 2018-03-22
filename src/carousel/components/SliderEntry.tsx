@@ -99,27 +99,31 @@ export class SliderEntry extends React.Component<Props, State> {
   }
 
   onCarouselPress = (data, showBarcode) => {
+    let skip = false;
     this.setState({
       modalVisible: !this.state.modalVisible,
     });
     if (!showBarcode) {
       AsyncStorage.getItem('item')
         .then(storedItems => {
-          debugger;
           if (storedItems) {
             const newPayload = JSON.parse(storedItems);
-            newPayload.push(data);
-            AsyncStorage.setItem('item', JSON.stringify(newPayload));
+            newPayload.forEach(item => {
+              if (item.title === data.title) {
+                skip = true;
+              }
+            });
+            if (!skip) {
+              newPayload.push(data);
+              AsyncStorage.setItem('item', JSON.stringify(newPayload));
+            }
           } else {
-            debugger;
             const payload = [];
             payload.push(data);
             AsyncStorage.setItem('item', JSON.stringify(payload));
           }
         })
-        .catch(error => {
-          debugger;
-        });
+        .catch(error => {});
     }
   };
 
