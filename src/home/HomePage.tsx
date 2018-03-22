@@ -60,6 +60,8 @@ export class Home extends React.Component<Props, State> {
       screen: 'MakeMyMeal',
       title: 'Make My Meal',
       passProps: { homePage: this.updateRecents },
+      animated: true,
+      animationType: 'fade',
     });
   }
 

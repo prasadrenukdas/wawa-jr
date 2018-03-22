@@ -18,12 +18,11 @@ import reactNativePopupDialog, {
   SlideAnimation,
   DialogTitle,
 } from 'react-native-popup-dialog';
-import reactNativeBarcodeBuilder from 'react-native-barcode-builder';
+
 import reactNativeBarcodePdf417 from 'react-native-barcode-pdf417';
 import { itemWidth } from 'src/carousel/styles/SliderEntry';
 
 const Barcode = reactNativeBarcodePdf417;
-// const Barcode = reactNativeBarcodeBuilder;
 const PopupDialog = reactNativePopupDialog;
 const slideAnimation = new SlideAnimation({
   slideFrom: 'bottom',
@@ -143,23 +142,18 @@ export class MakeMyMeal extends React.Component<Props, State> {
             <View>
               <Text style={styles.title}>Main Course</Text>
             </View>
-            <View style={styles.scrollContainer}>
-              <WawaCarousel showBarcode={false} data={this.state.mains} />
-            </View>
+
+            <WawaCarousel showBarcode={false} data={this.state.mains} />
           </View>
 
           <View style={styles.sidesContainer}>
             <Text style={styles.title}>Sides</Text>
-            <View style={styles.scrollContainer}>
-              <WawaCarousel showBarcode={false} data={this.state.sides} />
-            </View>
+            <WawaCarousel showBarcode={false} data={this.state.sides} />
           </View>
 
           <View style={styles.drinksContainer}>
             <Text style={styles.title}>Drinks</Text>
-            <View style={styles.scrollContainer}>
-              <WawaCarousel showBarcode={false} data={this.state.drinks} />
-            </View>
+            <WawaCarousel showBarcode={false} data={this.state.drinks} />
           </View>
         </ScrollView>
 
@@ -174,7 +168,7 @@ export class MakeMyMeal extends React.Component<Props, State> {
 }
 
 // Connected component is used with Redux store
-export const MakeMyMealPage = connect()(MakeMyMeal);
+// export const MakeMyMealPage = connect()(MakeMyMeal);
 
 // This helps auto-completion / type safety with `StyleSheet.create`
 interface Style {
@@ -207,7 +201,7 @@ const styles = StyleSheet.create<Style>({
     justifyContent: 'center',
   },
   title: {
-    paddingHorizontal: 30,
+    padding: 20,
     backgroundColor: 'transparent',
     color: 'rgb(66, 32, 5)',
     fontSize: 20,
@@ -246,14 +240,15 @@ const styles = StyleSheet.create<Style>({
   },
   mainsContainer: {
     alignItems: 'center',
+    flex: 1,
   },
   sidesContainer: {
-    flex: 0.33,
+    flex: 1,
     alignItems: 'center',
     paddingTop: 10,
   },
   drinksContainer: {
-    flex: 0.33,
+    flex: 1,
     alignItems: 'center',
     paddingTop: 10,
   },
