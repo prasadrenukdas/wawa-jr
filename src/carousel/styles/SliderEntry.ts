@@ -42,6 +42,13 @@ export const styles = StyleSheet.create({
     zIndex: 3,
     height: slideHeight,
   },
+  dismiss: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    paddingLeft: '94%',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
   slideInnerContainer: {
     width: itemWidth,
     height: slideHeight,

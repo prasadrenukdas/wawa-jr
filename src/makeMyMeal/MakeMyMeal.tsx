@@ -220,6 +220,7 @@ const styles = StyleSheet.create<Style>({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgb(196, 18, 48)',
+    height: 70,
   },
   scrollContainer: {
     height,

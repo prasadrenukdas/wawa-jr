@@ -44,6 +44,10 @@ function ShowOverlay(props) {
   if (props.show) {
     return (
       <View style={styles.overlay}>
+        <Image
+          style={{ width: 50, height: 50, alignSelf: 'flex-end' }}
+          source={require('../../../assets/images/cancel.png')}
+        />
         <View style={styles.barcodeContainer}>
           <ShowBarCode show={props.showBarcode} data={props.data} />
         </View>
