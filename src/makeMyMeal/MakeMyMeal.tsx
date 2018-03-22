@@ -31,7 +31,10 @@ const slideAnimation = new SlideAnimation({
 
 const { width } = Dimensions.get('window');
 const height = width * 0.8;
-interface Props {}
+interface Props {
+  navigator: any;
+  homePage;
+}
 
 interface State {
   data: any;
@@ -88,6 +91,7 @@ export class MakeMyMeal extends React.Component<Props, State> {
   }
 
   showPopup = () => {
+    const { homePage } = this.props;
     AsyncStorage.getItem('item')
       .then(value => {
         if (value !== null) {
@@ -99,7 +103,10 @@ export class MakeMyMeal extends React.Component<Props, State> {
           this.setState({
             selectedData: itemNames,
           });
+          debugger;
           this.popupDialog.show();
+          debugger;
+          homePage();
         }
       })
       .catch(error => {});

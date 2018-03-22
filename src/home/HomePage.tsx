@@ -35,13 +35,14 @@ export class Home extends React.Component<Props, State> {
   popupDialog: any;
   constructor(props) {
     super(props);
+    this.updateRecents = this.updateRecents.bind(this);
     this.onPressButton = this.onPressButton.bind(this);
     this.state = {
       data: [],
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     // AsyncStorage.removeItem('item');
     AsyncStorage.getItem('item')
       .then(value => {
@@ -58,7 +59,20 @@ export class Home extends React.Component<Props, State> {
     this.props.navigator.push({
       screen: 'MakeMyMeal',
       title: 'Make My Meal',
+      passProps: { homePage: this.updateRecents },
     });
+  }
+
+  updateRecents() {
+    AsyncStorage.getItem('item')
+      .then(value => {
+        if (value !== null) {
+          this.setState({
+            data: JSON.parse(value),
+          });
+        }
+      })
+      .catch(error => {});
   }
 
   showPopup() {
