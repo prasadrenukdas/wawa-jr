@@ -1,4 +1,4 @@
-package com.rnts3;
+package com.wawajunior;
 
 import android.support.annotation.Nullable;
 
