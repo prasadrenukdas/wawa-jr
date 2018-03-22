@@ -12,7 +12,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-import { Example } from 'src/carouselExample/ExamplePage';
+import { WawaCarousel } from 'src/carousel/Carousel';
 import reactNativePopupDialog, {
   SlideAnimation,
   DialogTitle,
@@ -107,21 +107,21 @@ export class MakeMyMeal extends React.Component<Props, State> {
               <Text style={styles.title}>Main Course</Text>
             </View>
             <View style={styles.scrollContainer}>
-              <Example showBarcode={false} data={this.state.mains} />
+              <WawaCarousel showBarcode={false} data={this.state.mains} />
             </View>
           </View>
 
           <View style={styles.sidesContainer}>
             <Text style={styles.title}>Sides</Text>
             <View style={styles.scrollContainer}>
-              <Example showBarcode={false} data={this.state.sides} />
+              <WawaCarousel showBarcode={false} data={this.state.sides} />
             </View>
           </View>
 
           <View style={styles.drinksContainer}>
             <Text style={styles.title}>Drinks</Text>
             <View style={styles.scrollContainer}>
-              <Example showBarcode={false} data={this.state.drinks} />
+              <WawaCarousel showBarcode={false} data={this.state.drinks} />
             </View>
           </View>
         </ScrollView>

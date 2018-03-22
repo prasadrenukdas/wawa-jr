@@ -31,7 +31,7 @@ interface State {
   slider1ActiveSlide: any;
   entries: any;
 }
-export class Example extends React.Component<Props, State> {
+export class WawaCarousel extends React.Component<Props, State> {
   // tslint:disable-next-line:variable-name
   _slider1Ref: any;
   constructor(props) {
@@ -187,4 +187,4 @@ export class Example extends React.Component<Props, State> {
   }
 }
 
-export const ExamplePage = connect()(Example);
+export const CarouselComponent = connect()(WawaCarousel);

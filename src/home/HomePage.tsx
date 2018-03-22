@@ -17,7 +17,7 @@ import {
   Button,
   AsyncStorage,
 } from 'react-native';
-import { Example } from 'src/carouselExample/ExamplePage';
+import { WawaCarousel } from 'src/carousel/Carousel';
 import reactNativeBarcodeBuilder from 'react-native-barcode-builder';
 
 const PopupDialog = reactNativePopupDialog;
@@ -86,7 +86,7 @@ export class Home extends React.Component<Props, State> {
             <Text style={styles.title}>{`Recents`}</Text>
           </View>
 
-          <Example showBarcode data={this.state.data} />
+          <WawaCarousel showBarcode data={this.state.data} />
         </View>
       </View>
     );
