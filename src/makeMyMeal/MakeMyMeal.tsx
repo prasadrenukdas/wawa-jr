@@ -13,6 +13,17 @@ import {
 } from 'react-native';
 
 import { Example } from 'src/carouselExample/ExamplePage';
+import reactNativePopupDialog, {
+  SlideAnimation,
+  DialogTitle,
+} from 'react-native-popup-dialog';
+import reactNativeBarcodeBuilder from 'react-native-barcode-builder';
+
+const Barcode = reactNativeBarcodeBuilder;
+const PopupDialog = reactNativePopupDialog;
+const slideAnimation = new SlideAnimation({
+  slideFrom: 'bottom',
+});
 
 const { width } = Dimensions.get('window');
 const height = width * 0.8;
@@ -25,6 +36,7 @@ interface State {
   drinks: any;
 }
 export class MakeMyMeal extends React.Component<Props, State> {
+  popupDialog: any;
   constructor(props) {
     super(props);
     this.state = {
@@ -33,6 +45,8 @@ export class MakeMyMeal extends React.Component<Props, State> {
       drinks: [],
       sides: [],
     };
+
+    this.showPopup = this.showPopup.bind(this);
   }
   onPressButton() {}
 
@@ -67,29 +81,43 @@ export class MakeMyMeal extends React.Component<Props, State> {
       });
   }
 
+  showPopup = () => {
+    this.popupDialog.show();
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView>
-          <TouchableHighlight
-            onPress={this.onPressButton}
-            underlayColor="white"
-          >
-            <View style={styles.mainsContainer}>
-              <View>
-                <Text style={styles.title}>Main Course</Text>
-              </View>
-              <View style={styles.scrollContainer}>
-                <Example showBarcode={false} data={this.state.mains} />
-              </View>
+        <PopupDialog
+          dialogAnimation={slideAnimation}
+          dialogTitle={
+            <DialogTitle title="Scan the barcode for adding items via WAWA app!" />
+          }
+          ref={popupDialog => {
+            this.popupDialog = popupDialog;
+          }}
+        >
+          <View>
+            <Barcode value="Hello World" format="CODE128" />
+          </View>
+        </PopupDialog>
+        <ScrollView style={styles.container}>
+          <View style={styles.mainsContainer}>
+            <View>
+              <Text style={styles.title}>Main Course</Text>
             </View>
-          </TouchableHighlight>
+            <View style={styles.scrollContainer}>
+              <Example showBarcode={false} data={this.state.mains} />
+            </View>
+          </View>
+
           <View style={styles.sidesContainer}>
             <Text style={styles.title}>Sides</Text>
             <View style={styles.scrollContainer}>
               <Example showBarcode={false} data={this.state.sides} />
             </View>
           </View>
+
           <View style={styles.drinksContainer}>
             <Text style={styles.title}>Drinks</Text>
             <View style={styles.scrollContainer}>
@@ -97,9 +125,12 @@ export class MakeMyMeal extends React.Component<Props, State> {
             </View>
           </View>
         </ScrollView>
-        <View style={styles.makeItContainer}>
-          <Text style={styles.makeItHeader}>Make it</Text>
-        </View>
+
+        <TouchableHighlight onPress={this.showPopup}>
+          <View style={styles.makeItContainer}>
+            <Text style={styles.makeItHeader}>Make it</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -180,10 +211,12 @@ const styles = StyleSheet.create<Style>({
     alignItems: 'center',
   },
   sidesContainer: {
+    flex: 0.33,
     alignItems: 'center',
     paddingTop: 10,
   },
   drinksContainer: {
+    flex: 0.33,
     alignItems: 'center',
     paddingTop: 10,
   },

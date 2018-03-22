@@ -45,30 +45,19 @@ export class Home extends React.Component<Props, State> {
     };
   }
 
-  async componentWillMount() {
+  componentDidMount() {
     // AsyncStorage.removeItem('item');
-    try {
-      const value = await AsyncStorage.getItem('item');
-      if (value !== null) {
-        this.setState({
-          data: JSON.parse(value),
-        });
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-    /*   fetch('https://s3.amazonaws.com/mob-training/wawa/wawa-jr.json')
-      .then(data => data.json())
-      .then(data =>
-        data.menu.main.map(item => {
-          return {
-            illustration: item.url,
-            title: item.name,
-          };
-        }),
-      )
-      .then(data => this.setState({ data })); */
+    AsyncStorage.getItem('item')
+      .then(value => {
+        if (value !== null) {
+          this.setState({
+            data: JSON.parse(value),
+          });
+        }
+      })
+      .catch(error => {});
   }
+
   onPressButton() {
     this.props.navigator.push({
       screen: 'MakeMyMeal',
@@ -96,26 +85,9 @@ export class Home extends React.Component<Props, State> {
           <View>
             <Text style={styles.title}>{`Recents`}</Text>
           </View>
-          <TouchableHighlight
-            // tslint:disable-next-line:jsx-no-lambda
-            onPress={() => {
-              this.popupDialog.show();
-            }}
-            underlayColor="white"
-          >
-            <Example showBarcode data={this.state.data} />
-          </TouchableHighlight>
-        </View>
 
-        <PopupDialog
-          ref={popupDialog => {
-            this.popupDialog = popupDialog;
-          }}
-        >
-          <View>
-            <Barcode value="Hello World" format="CODE128" />
-          </View>
-        </PopupDialog>
+          <Example showBarcode data={this.state.data} />
+        </View>
       </View>
     );
   }

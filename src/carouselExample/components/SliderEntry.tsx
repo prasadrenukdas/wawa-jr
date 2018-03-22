@@ -10,11 +10,7 @@ import { PropTypes } from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import { styles } from '../styles/SliderEntry';
 
-import reactNativePopupDialog from 'react-native-popup-dialog';
 import reactNativeBarcodeBuilder from 'react-native-barcode-builder';
-import reactNativeModalOverlay from 'react-native-modal-overlay';
-
-const Overlay = reactNativeModalOverlay;
 
 interface Props {
   data: any;
@@ -33,7 +29,13 @@ interface State {
 function ShowBarCode(props) {
   if (props.show) {
     return (
-      <Barcode width="2" height="70" value="Hello World" format="CODE128" />
+      <Barcode
+        marginTop={200}
+        width={2}
+        height={100}
+        value="Hello World"
+        format="CODE128"
+      />
     );
   }
   return null;

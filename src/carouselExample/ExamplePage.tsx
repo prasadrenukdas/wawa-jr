@@ -75,7 +75,7 @@ export class Example extends React.Component<Props, State> {
         data={item}
         even={false}
         parallax={false}
-        parallaxProps
+        parallaxProps={undefined}
       />
     );
   }
@@ -148,7 +148,7 @@ export class Example extends React.Component<Props, State> {
           onSnapToItem={index => this.setState({ slider1ActiveSlide: index })}
         />
         <Pagination
-          dotsLength={ENTRIES1.length}
+          dotsLength={this.props.data.length}
           activeDotIndex={slider1ActiveSlide}
           containerStyle={styles.paginationContainer}
           dotColor={'rgba(255, 255, 255, 0.92)'}
