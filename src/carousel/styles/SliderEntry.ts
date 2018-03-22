@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     marginBottom: 200,
     left: 0,
     top: 0,
-    opacity: 0.7,
+    opacity: 0.8,
     backgroundColor: 'white',
     width: itemWidth,
     zIndex: 3,

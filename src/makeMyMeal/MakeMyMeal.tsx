@@ -10,6 +10,7 @@ import {
   TouchableHighlight,
   Dimensions,
   ScrollView,
+  AsyncStorage,
 } from 'react-native';
 
 import { WawaCarousel } from 'src/carousel/Carousel';
@@ -34,6 +35,7 @@ interface State {
   mains: any;
   sides: any;
   drinks: any;
+  selectedData: any;
 }
 export class MakeMyMeal extends React.Component<Props, State> {
   popupDialog: any;
@@ -44,6 +46,7 @@ export class MakeMyMeal extends React.Component<Props, State> {
       mains: [],
       drinks: [],
       sides: [],
+      selectedData: [],
     };
 
     this.showPopup = this.showPopup.bind(this);
@@ -82,7 +85,21 @@ export class MakeMyMeal extends React.Component<Props, State> {
   }
 
   showPopup = () => {
-    this.popupDialog.show();
+    AsyncStorage.getItem('item')
+      .then(value => {
+        if (value !== null) {
+          const items = JSON.parse(value);
+          const itemNames = [];
+          items.forEach(item => {
+            itemNames.push(item.title);
+          });
+          this.setState({
+            selectedData: itemNames,
+          });
+          this.popupDialog.show();
+        }
+      })
+      .catch(error => {});
   };
 
   render() {
@@ -98,7 +115,10 @@ export class MakeMyMeal extends React.Component<Props, State> {
           }}
         >
           <View>
-            <Barcode value="Hello World" format="CODE128" />
+            <Barcode
+              value={JSON.stringify(this.state.selectedData)}
+              format="CODE128"
+            />
           </View>
         </PopupDialog>
         <ScrollView style={styles.container}>

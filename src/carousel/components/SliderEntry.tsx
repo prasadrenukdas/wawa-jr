@@ -31,9 +31,9 @@ function ShowBarCode(props) {
     return (
       <Barcode
         marginTop={200}
-        width={2}
-        height={100}
-        value="Hello World"
+        width={3}
+        height={150}
+        value={props.data.title}
         format="CODE128"
       />
     );
@@ -47,7 +47,7 @@ function ShowOverlay(props) {
     return (
       <View style={styles.overlay}>
         <View style={styles.barcodeContainer}>
-          <ShowBarCode show={props.showBarcode} />
+          <ShowBarCode show={props.showBarcode} data={props.data} />
         </View>
       </View>
     );
