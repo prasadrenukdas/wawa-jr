@@ -102,26 +102,45 @@ export class SliderEntry extends React.Component<Props, State> {
       modalVisible: !this.state.modalVisible,
     });
     if (!showBarcode) {
-      AsyncStorage.getItem('item')
-        .then(storedItems => {
+      if (!this.state.modalVisible) {
+        AsyncStorage.getItem('item')
+          .then(storedItems => {
+            if (storedItems) {
+              const newPayload = JSON.parse(storedItems);
+              newPayload.forEach(item => {
+                if (item.title === data.title) {
+                  skip = true;
+                }
+              });
+              if (!skip) {
+                newPayload.push(data);
+                AsyncStorage.setItem('item', JSON.stringify(newPayload));
+              }
+            } else {
+              const payload = [];
+              payload.push(data);
+              AsyncStorage.setItem('item', JSON.stringify(payload));
+            }
+          })
+          .catch(error => {});
+      } else {
+        let storedItemIndex = 0;
+        AsyncStorage.getItem('item').then(storedItems => {
           if (storedItems) {
             const newPayload = JSON.parse(storedItems);
-            newPayload.forEach(item => {
+            newPayload.forEach((item, index) => {
               if (item.title === data.title) {
+                storedItemIndex = index;
                 skip = true;
               }
             });
-            if (!skip) {
-              newPayload.push(data);
+            if (skip) {
+              newPayload.splice(storedItemIndex, 1);
               AsyncStorage.setItem('item', JSON.stringify(newPayload));
             }
-          } else {
-            const payload = [];
-            payload.push(data);
-            AsyncStorage.setItem('item', JSON.stringify(payload));
           }
-        })
-        .catch(error => {});
+        });
+      }
     }
   };
 
