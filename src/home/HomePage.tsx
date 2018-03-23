@@ -14,6 +14,7 @@ import {
   TouchableHighlight,
   Dimensions,
   AsyncStorage,
+  ScrollView,
 } from 'react-native';
 import { WawaCarousel } from 'src/carousel/Carousel';
 
@@ -98,13 +99,17 @@ export class Home extends React.Component<Props, State> {
             <Text style={styles.makeMyMealHeader}>Make My Meal</Text>
           </View>
         </TouchableHighlight>
-        <View style={styles.scrollContainer}>
-          <View>
-            <Text style={styles.title}>{`Recents`}</Text>
+        <ScrollView style={styles.scrollContainer}>
+          <Text style={styles.title}>{`Recents`}</Text>
+          <View style={{ flex: 0.8 }}>
+            <WawaCarousel showBarcode data={this.state.data} />
           </View>
-
-          <WawaCarousel showBarcode data={this.state.data} />
-        </View>
+          <View style={styles.quoteContainer}>
+            <Text style={styles.quote}>
+              {`There is no sincerer love than the love of food - George Bernard Shaw.`}
+            </Text>
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -125,11 +130,24 @@ interface Style {
   image;
   recentsContainer;
   title;
+  quoteContainer;
+  quote;
 }
 
 // React hoists variables. We declare the styles here to keep them out of the
 // way of the component definition
 const styles = StyleSheet.create<Style>({
+  quote: {
+    paddingHorizontal: 30,
+    backgroundColor: 'transparent',
+    color: 'rgb(66, 32, 5)',
+    fontSize: 15,
+    fontStyle: 'italic',
+    textAlign: 'center',
+  },
+  quoteContainer: {
+    flex: 0.2,
+  },
   title: {
     paddingHorizontal: 30,
     backgroundColor: 'transparent',
@@ -141,9 +159,7 @@ const styles = StyleSheet.create<Style>({
     paddingBottom: 20,
   },
   scrollContainer: {
-    height,
-    flex: 0.7,
-    alignItems: 'center',
+    height: 600,
     paddingTop: 10,
   },
   image: {
@@ -158,7 +174,7 @@ const styles = StyleSheet.create<Style>({
   },
   recentsContainer: {
     width: 375,
-    flex: 1,
+    flex: 0.7,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
