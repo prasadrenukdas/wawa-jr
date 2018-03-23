@@ -170,14 +170,9 @@ export class SliderEntry extends React.Component<Props, State> {
               style={[styles.radiusMask, even ? styles.radiusMaskEven : {}]}
             />
           </View>
-          <View
-            style={[styles.textContainer, even ? styles.textContainerEven : {}]}
-          >
+          <View style={[styles.textContainer]}>
             {uppercaseTitle}
-            <Text
-              style={[styles.subtitle, even ? styles.subtitleEven : {}]}
-              numberOfLines={2}
-            >
+            <Text style={[styles.subtitle]} numberOfLines={2}>
               {subtitle}
             </Text>
           </View>

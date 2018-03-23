@@ -61,6 +61,12 @@ export class Home extends React.Component<Props, State> {
       passProps: { homePage: this.updateRecents },
       animated: true,
       animationType: 'fade',
+      navigatorStyle: {
+        navBarTextColor: 'rgb(66, 32, 5)',
+        navBarTextFontSize: 20,
+        navBarHideOnScroll: true,
+        navBarButtonColor: 'rgb(66, 32, 5)',
+      },
     });
   }
 

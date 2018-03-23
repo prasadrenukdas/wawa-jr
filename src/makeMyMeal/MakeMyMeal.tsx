@@ -15,7 +15,7 @@ import {
 
 import { WawaCarousel } from 'src/carousel/Carousel';
 import reactNativePopupDialog, {
-  SlideAnimation,
+  FadeAnimation,
   DialogTitle,
 } from 'react-native-popup-dialog';
 
@@ -24,8 +24,9 @@ import { itemWidth } from 'src/carousel/styles/SliderEntry';
 
 const Barcode = reactNativeBarcodePdf417;
 const PopupDialog = reactNativePopupDialog;
-const slideAnimation = new SlideAnimation({
-  slideFrom: 'bottom',
+const fadeAnimation = new FadeAnimation({
+  toValue: 3,
+  animationDuration: 1000,
 });
 
 const { width } = Dimensions.get('window');
@@ -115,7 +116,7 @@ export class MakeMyMeal extends React.Component<Props, State> {
     return (
       <View style={styles.container}>
         <PopupDialog
-          dialogAnimation={slideAnimation}
+          dialogAnimation={fadeAnimation}
           dialogTitle={
             <DialogTitle title="Scan the barcode for adding items via WAWA app!" />
           }

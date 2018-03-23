@@ -109,21 +109,22 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.black,
   },
   title: {
-    color: colors.black,
-    fontSize: 13,
+    color: 'rgb(66, 32, 5)',
+    fontSize: 17,
     fontWeight: 'bold',
     letterSpacing: 0.5,
+    alignSelf: 'center',
   },
   titleEven: {
-    color: 'white',
+    color: 'black',
   },
   subtitle: {
     marginTop: 6,
-    color: colors.gray,
-    fontSize: 12,
+    color: colors.black,
+    fontSize: 22,
     fontStyle: 'italic',
   },
   subtitleEven: {
-    color: 'rgba(255, 255, 255, 0.7)',
+    color: 'black',
   },
 });

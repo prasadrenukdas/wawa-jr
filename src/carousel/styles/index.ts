@@ -43,10 +43,10 @@ export const styles = StyleSheet.create({
     color: colors.black,
   },
   subtitle: {
-    marginTop: 5,
+    marginTop: 13,
     paddingHorizontal: 30,
     backgroundColor: 'transparent',
-    color: 'rgba(255, 255, 255, 0.75)',
+    color: 'rgb(66, 32, 5)',
     fontSize: 13,
     fontStyle: 'italic',
     textAlign: 'center',
