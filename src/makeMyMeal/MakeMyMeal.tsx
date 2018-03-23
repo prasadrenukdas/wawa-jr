@@ -158,9 +158,13 @@ export class MakeMyMeal extends React.Component<Props, State> {
           </View>
         </ScrollView>
 
-        <TouchableHighlight onPress={this.showPopup}>
-          <View style={styles.makeItContainer}>
-            <Text style={styles.makeItHeader}>Make it</Text>
+        <TouchableHighlight
+          style={styles.makeItContainer}
+          underlayColor="rgb(170, 6, 33)"
+          onPress={this.showPopup}
+        >
+          <View>
+            <Text style={[styles.makeItHeader]}>Make it</Text>
           </View>
         </TouchableHighlight>
       </View>

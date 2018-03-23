@@ -59,7 +59,7 @@ export class Home extends React.Component<Props, State> {
   }
 
   componentWillMount() {
-    AsyncStorage.removeItem('item');
+    // AsyncStorage.removeItem('item');
     AsyncStorage.getItem('item')
       .then(value => {
         if (value !== null) {
