@@ -30,6 +30,15 @@ interface State {
   slider1ActiveSlide: any;
   entries: any;
 }
+
+// tslint:disable-next-line:function-name
+function Subtitle(props) {
+  if (props.data.length) {
+    return <Text style={styles.subtitle}>{props.title}</Text>;
+  } else {
+    return null;
+  }
+}
 export class WawaCarousel extends React.Component<Props, State> {
   // tslint:disable-next-line:variable-name
   _slider1Ref: any;
@@ -126,7 +135,7 @@ export class WawaCarousel extends React.Component<Props, State> {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.subtitle}>{title}</Text>
+        <Subtitle title={title} data={this.props.data} />
         <Carousel
           ref={c => (this._slider1Ref = c)}
           data={this.props.data}

@@ -30,6 +30,22 @@ interface State {
   data;
 }
 
+// tslint:disable-next-line:function-name
+function ShowWawaCarousel(props) {
+  if (props.data.length) {
+    return (
+      <View style={{ flex: 0.8 }}>
+        <WawaCarousel showBarcode data={props.data} />
+      </View>
+    );
+  } else {
+    return (
+      <View style={{ height: 350 }}>
+        <Text style={styles.noRecentItems}> No Recent Items </Text>
+      </View>
+    );
+  }
+}
 // Export component without provider for testing purposes
 export class Home extends React.Component<Props, State> {
   popupDialog: any;
@@ -43,7 +59,7 @@ export class Home extends React.Component<Props, State> {
   }
 
   componentWillMount() {
-    // AsyncStorage.removeItem('item');
+    AsyncStorage.removeItem('item');
     AsyncStorage.getItem('item')
       .then(value => {
         if (value !== null) {
@@ -101,9 +117,8 @@ export class Home extends React.Component<Props, State> {
         </TouchableHighlight>
         <ScrollView style={styles.scrollContainer}>
           <Text style={styles.title}>{`Recents`}</Text>
-          <View style={{ flex: 0.8 }}>
-            <WawaCarousel showBarcode data={this.state.data} />
-          </View>
+          <ShowWawaCarousel data={this.state.data ? this.state.data : []} />
+
           <View style={styles.quoteContainer}>
             <Text style={styles.quote}>
               {`There is no sincerer love than the love of food - George Bernard Shaw.`}
@@ -132,11 +147,22 @@ interface Style {
   title;
   quoteContainer;
   quote;
+  noRecentItems;
 }
 
 // React hoists variables. We declare the styles here to keep them out of the
 // way of the component definition
 const styles = StyleSheet.create<Style>({
+  noRecentItems: {
+    paddingHorizontal: 30,
+    backgroundColor: 'transparent',
+    color: 'rgb(66, 32, 5)',
+    fontSize: 20,
+
+    textAlign: 'center',
+    paddingTop: 140,
+    paddingBottom: 20,
+  },
   quote: {
     paddingHorizontal: 30,
     backgroundColor: 'transparent',
