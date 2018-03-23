@@ -168,7 +168,7 @@ export class MakeMyMeal extends React.Component<Props, State> {
 }
 
 // Connected component is used with Redux store
-// export const MakeMyMealPage = connect()(MakeMyMeal);
+export const MakeMyMealPage = connect()(MakeMyMeal);
 
 // This helps auto-completion / type safety with `StyleSheet.create`
 interface Style {
